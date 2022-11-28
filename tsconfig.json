@@ -1,0 +1,22 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.web.json",
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "*/.js"],
+
+  "compilerOptions": {
+  // "strict": true,
+  "module": "ESNext",
+
+    "baseUrl": "",
+    "paths": {
+      "@/*": ["src/*"],
+      "@@firestore": ["firestore/db.ts"]
+
+    }
+  },
+
+  "references": [
+    {
+      "path": "./tsconfig.config.json"
+    }
+  ]
+}

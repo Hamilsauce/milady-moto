@@ -1,0 +1,109 @@
+<script setup lang="ts">
+
+const handleMintLinkClick = (e: Event): void => {
+  const popup = open('https://www.scatter.art/collection/0x8fc0d90f2c45a5e7f94904075c952e0943cfccfd?tab=mint', 'Mint your Milady!', 'popup=true');
+
+};
+</script>
+
+<template>
+  <div class="item" @click="handleMintLinkClick">
+    <i>
+      <slot name="icon"></slot>
+    </i>
+    <div class="details">
+      <h3 class="heading">
+        <slot name="heading" ></slot>
+      </h3>
+      <slot></slot>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.item {
+  margin-top: 2rem;
+  display: flex;
+  cursor: pointer;
+  box-shadow: 0 0 10px 1px rgb(36, 63, 8);
+  backdrop-filter: brightness(50%);
+  margin-bottom: 8px;
+  font-size: 16px;
+  padding: 0;
+}
+
+.heading:hover {
+  color: hsla(160, 100%, 37%, 1);
+}
+
+.details {
+  flex: 1;
+  margin-left: 1rem;
+}
+
+i {
+  display: flex;
+  place-items: center;
+  place-content: center;
+  width: 32px;
+  height: 32px;
+
+  color: var(--color-text);
+}
+
+h3 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+  color: var(--color-heading);
+}
+
+@media (min-width: 1024px) {
+  .item {
+    margin-top: 0;
+    padding: 0.4rem 0 1rem calc(var(--section-gap) / 2);
+    box-shadow: 0 0 10px 1px rgb(27, 27, 27);
+padding-right: 32px;
+  }
+
+  i {
+    top: calc(50% - 25px);
+    left: -26px;
+    position: absolute;
+    border: 1px solid var(--color-border);
+    background: var(--color-background);
+    border-radius: 8px;
+    width: 50px;
+    height: 50px;
+  }
+
+  .item:before {
+    content: " ";
+    border-left: 1px solid var(--color-border);
+    position: absolute;
+    left: 0;
+    bottom: calc(50% + 25px);
+    height: calc(50% - 25px);
+  padding: 0;
+  }
+
+  .item:after {
+    content: " ";
+    border-left: 1px solid var(--color-border);
+    position: absolute;
+    left: 0;
+    top: calc(50% + 25px);
+    height: calc(50% - 25px);
+  padding: 0;
+  }
+
+  .item:first-of-type:before {
+    display: none;
+  padding: 0;
+  }
+
+  .item:last-of-type:after {
+    display: none;
+  }
+}
+</style>
