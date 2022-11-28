@@ -12,10 +12,12 @@ import HelloWorld from "./components/HelloWorld.vue";
     <div class="wrapper">
       <HelloWorld msg="Milady bitch!" />
 
+
       <nav>
         <a  id="mint-link">Mint on Scatter</a>
         <RouterLink to="/about">Connect to verify ownership of tokey toke</RouterLink>
         <RouterLink to="/about">Enter your detes into the form</RouterLink>
+        <RouterLink to="/about">wait</RouterLink>
         <RouterLink to="/about">wait</RouterLink>
       </nav>
     </div>
