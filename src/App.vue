@@ -1,36 +1,23 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from "vue-router";
 import HelloWorld from "./components/HelloWorld.vue";
-import Web3 from 'web3';
-import { ref } from "vue";
-const GCF_LOCAL_URL = 'http://localhost:5000/my-lady-8b48f/us-central1/getMiladyBalance'
-const GCF_URL = 'https://us-central1-my-lady-8b48f.cloudfunctions.net/getMiladyBalance';
+import { computed } from "vue";
+import { useUserStore } from "./stores/counter";
+import router from "./router";
 
-let IAN_WALLET = '0x587376ed782a73966c1b9d9a00635613a6e539dd'
-let userWalletAddress: string[] | null = null;
 
-const isConnected = ref(false);
+const userStore = useUserStore();
 
-const connect = async () => {
-  const web3 = new Web3(Web3.givenProvider)
-  userWalletAddress = await web3.eth.requestAccounts();
+const isLegit = computed(() => userStore.isConnected && userStore.hasBalance);
 
-  isConnected.value = userWalletAddress ? true : false;
-  console.warn('userWalletAddress', userWalletAddress);
+const handleConnectClick = async () => {
+  userStore.connect();
 };
 
 const handleFormButtonClick = async (e: Event): Promise<void> => {
-  let addressResponse = (await fetch(GCF_LOCAL_URL
+  if (!isLegit) return;
 
-    , {
-      method: 'GET',
-      // mode: 'no-cors',
-      // body: JSON.stringify({ address: IAN_WALLET })
-    }));
-
-  let res = await addressResponse.json()
-  console.warn({ res });
-
+  router.push(('/vip'));
 };
 
 </script>
@@ -50,14 +37,25 @@ const handleFormButtonClick = async (e: Event): Promise<void> => {
       </nav>
     </div>
     <div id="app-header__connect-container">
-      <button @click="connect" class="app-button" id="connect-button" type="button">CONNECT</button>
+      <button @click="handleConnectClick" class="app-button" id="connect-button" type="button">CONNECT</button>
     </div>
   </header>
 
   <section id="app-body">
-    <button v-if="isConnected" @click="handleFormButtonClick" id="to-form-button" class="app-button" type="button">
-      GO TO GATED AREA IF YOU GOT WHAT IT TAKES
-    </button>
+    <div id="app-body--top">
+      <div class="wallet-message" v-if="userStore.isConnected && !userStore.hasBalance">
+        Sweet work Mr. {{ userStore.user.wallet }}, you're connected. You got 0 mi777s though, so buy up.
+      </div>
+      <div class="wallet-message" v-if="isLegit">
+        Sweet work Mr. {{ userStore.user.wallet }}, you're connected AND you got {{ userStore.user.mi777Balance }}, you
+        are VIP fatty.
+        <button v-if="userStore.isConnected" @click="handleFormButtonClick" id="to-form-button" class="app-button"
+          type="button">
+          GO TO GATED AREA IF YOU GOT WHAT IT TAKES
+        </button>
+      </div>
+
+    </div>
     <RouterView />
   </section>
 </template>
@@ -76,7 +74,6 @@ header {
   gap: 0px;
   width: 100%;
   height: 100%;
-
 }
 
 #app-header .wrapper {
@@ -92,7 +89,6 @@ header {
   align-items: flex-start;
   width: 100%;
   height: 100%;
-
 }
 
 #app-body {
@@ -139,14 +135,11 @@ nav a:first-of-type {
   #app-header {
     display: flex;
     place-items: center;
-    /* padding-right: calc(var(--section-gap) / 2); */
   }
 
   .logo {
     margin: 0 2rem 0 0;
   }
-
-
 
   nav {
     text-align: left;
