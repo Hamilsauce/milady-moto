@@ -1,22 +1,30 @@
 <script lang="ts" setup>
-import { firestore } from '../../firestore/db'
+import { firestore } from '../../firestore/db';
 import { collection, setDoc, addDoc } from "firebase/firestore";
+import { ref } from 'vue';
 
-const data = {
+const data = ref({
   name: '',
   address1: '',
   city: '',
   state: '',
   zip: '',
   country: '',
-}
-
+});
 
 const handleSubmit = () => {
-console.log('HANDLE SUBMIT');
+  console.log('HANDLE SUBMIT');
 
-  addDoc(collection(firestore, 'tester1'), data)
+  addDoc(collection(firestore, 'tester1'), data.value);
 
+  Object.assign(data.value, {
+    name: '',
+    address1: '',
+    city: '',
+    state: '',
+    zip: '',
+    country: '',
+  });
 }
 
 </script>
