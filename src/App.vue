@@ -89,6 +89,7 @@ header {
   align-items: flex-start;
   width: 100%;
   height: 100%;
+  gap: 0px;
 }
 
 #app-body {
@@ -101,6 +102,9 @@ header {
   overflow-y: scroll;
 }
 
+#app-body--top {
+  display: flex;
+}
 .logo {
   display: block;
   margin: 0 auto 2rem;
@@ -139,6 +143,12 @@ nav a:first-of-type {
 
   .logo {
     margin: 0 2rem 0 0;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    gap: 0px;
+    /* grid-auto-flow: dense; */
   }
 
   nav {
