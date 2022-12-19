@@ -2,9 +2,10 @@
 import { RouterLink, RouterView } from "vue-router";
 import HelloWorld from "./components/HelloWorld.vue";
 import { computed } from "vue";
-import { useUserStore } from "./stores/counter";
+import { useUserStore } from "./stores/user.store";
 import router from "./router";
-
+// import ModelViewerWrapper from "./components/ModelViewerWrapper.vue";
+// const butt = model
 
 const userStore = useUserStore();
 
@@ -23,141 +24,190 @@ const handleFormButtonClick = async (e: Event): Promise<void> => {
 </script>
 
 <template>
-  <header id="app-header">
-    <img alt="Vue logo" class="logo" src="@/assets/mi777_jersey.png" width="250" height="250" />
+  <div id="connect-container">
+    <button @click="handleConnectClick">Connect</button>
+  </div>
+  <header id="app-header" :class="{ connected: isLegit }">
+    <div id="app-header-left">
+      <div id="app-header-left">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolorum id esse
+        quos laudantium accusamus soluta fugiat distinctio deserunt culpa commodi, fuga pariatur optio voluptatum
+        accusantium necessitatibus facilis debitis qui!</div>
 
-    <div class="wrapper">
-      <HelloWorld msg="Milady Moto wow!" />
+    </div>
+    <div id="app-header-right">
+      <button>PLACE MY JERSEY ORDER</button>
+    </div>
 
-      <nav>
-        <a id="mint-link">Mint on Scatter</a>
-        <RouterLink to="/vip">Connect to verify ownership of tokey toke</RouterLink>
-        <RouterLink to="/vip">Enter your detes into the form</RouterLink>
-        <RouterLink to="/vip">wait</RouterLink>
-      </nav>
-    </div>
-    <div id="app-header__connect-container">
-      <button @click="handleConnectClick" class="app-button" id="connect-button" type="button">CONNECT</button>
-    </div>
   </header>
-
   <section id="app-body">
-    <div id="app-body--top">
-      <div class="wallet-message" v-if="userStore.isConnected && !userStore.hasBalance">
-        Sweet work Mr. {{ userStore.user.wallet }}, you're connected. You got 0 mi777s though, so buy up.
-      </div>
-      <div class="wallet-message" v-if="isLegit">
-        Sweet work Mr. {{ userStore.user.wallet }}, you're connected AND you got {{ userStore.user.mi777Balance }}, you
-        are VIP fatty.
-        <button v-if="userStore.isConnected" @click="handleFormButtonClick" id="to-form-button" class="app-button"
-          type="button">
-          GO TO GATED AREA IF YOU GOT WHAT IT TAKES
-        </button>
-      </div>
+    <div class="container">
 
+      <model-viewer
+      id="model-viewer"
+        alt="Neil Armstrong's Spacesuit from the Smithsonian Digitization Programs Office and National Air and Space Museum"
+        src="/src/assets/mi777_3d.glb"
+        shadow-intensity="1" camera-controls
+        touch-action="pan-y"></model-viewer>
     </div>
-    <RouterView />
+    <div class="container">
+      <iframe src="https://hamilsauce.github.io/playground/simple-pixel-editor/" width="430" height="800"
+        frameborder="0"></iframe>
+    </div>
+    <div class="container">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+    </div>
+    <div class="container">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+    </div>
+    <div class="container">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+    </div>
+    <div class="container">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+    </div>
   </section>
+  <!-- <footer id="app-footer">
+    <div class="container">
+      footer
+    </div>
+  </footer> -->
+
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
+* {
+  /* border: 1px solid black; */
+
+}
+
+button {
+  cursor: pointer;
 }
 
 #app-header {
+  position: sticky;
+  top: 0;
+  left: 0;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
   gap: 0px;
+  border: 1px solid black;
+  overflow: hidden;
+  height: 0px;
+  padding: 0 56px;
+  background-color: burlywood;
+  z-index: 10;
+
+}
+
+#model-viewer {
   width: 100%;
   height: 100%;
 }
 
-#app-header .wrapper {
-  display: flex;
-  place-items: flex-start;
-  flex-wrap: wrap;
+#app-header-left {
+  width: 50%;
 }
 
-.app-header__connect-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-  width: 100%;
-  height: 100%;
-  gap: 0px;
+#app-header-right {}
+
+#app-header-right button {
+  padding: 32px;
+  background-color: purple;
+  color: white;
+  border: none;
+}
+
+#app-header.connected {
+  height: 400px;
 }
 
 #app-body {
+  position: relative;
+  top: 0;
+  left: 0;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 32px;
+  /* justify-content: flex-start; */
+  /* align-items: flex-start; */
+  gap: 500px;
   padding: 32px;
-  overflow-y: scroll;
+  z-index: 5;
+  height: 100%;
+  /* min-height: 3000px; */
+  overflow: scroll;
 }
 
-#app-body--top {
+.container {
   display: flex;
-}
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
   width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+  height: 100%;
+  gap: 0px;
+  height: fit-content;
+  min-height: 500px;
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
+#connect-container {
+  position: absolute;
+  right: 146px;
+  top: 146px;
+  /* position: sticky; */
+  /* top: 0;
+  left: 0; */
+  z-index: 500;
 }
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
+#connect-container button {
+  width: 235px;
+  height: 64.81px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 32px;
+  background-color: rgb(236, 221, 21);
+  font-weight: 600;
+  font-size: 18px;
+  z-index: 501;
 
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  #app-header {
-    display: flex;
-    place-items: center;
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr auto;
-    gap: 0px;
-    /* grid-auto-flow: dense; */
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
 }
 </style>

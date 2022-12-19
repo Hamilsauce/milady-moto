@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { useUserStore } from '@/stores/user.store';
 import { firestore } from '../../firestore/db';
 import { collection, setDoc, addDoc } from "firebase/firestore";
 import { ref } from 'vue';
@@ -11,6 +12,8 @@ const data = ref({
   zip: '',
   country: '',
 });
+
+const userStore = useUserStore()
 
 const handleSubmit = () => {
   console.log('HANDLE SUBMIT');
@@ -32,7 +35,7 @@ const handleSubmit = () => {
 <template>
   <div class="shipping-form-view">
     <h1>Have jersey</h1>
-    <div class="shipping-form-container">
+    <div v-for="token in userStore.user.mi777Balance" class="shipping-form-container">
       <form class="shipping-form">
         <div class="form-group">
           <label for="shipping-name">Name</label>

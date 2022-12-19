@@ -3,8 +3,10 @@ import { defineStore } from "pinia";
 import type { UserModel } from "@/models/user.model";
 import Web3 from 'web3';
 
-const GCF_LOCAL_URL = 'http://localhost:5000/my-lady-8b48f/us-central1/getMiladyBalance'
+const GCF_LOCAL_URL = 'http://localhost:5000/my-lady-8b48f/us-central1/getMiladyBalance';
 const GCF_URL = 'https://us-central1-my-lady-8b48f.cloudfunctions.net/getMiladyBalance';
+
+const envUrl = GCF_LOCAL_URL
 
 export interface UserState {
   userData: UserModel;
@@ -20,7 +22,7 @@ export type BalanceResponse = BalanceMap[];
 const initialUser: UserModel = {
   mi777Balance: null,
   wallet: null,
-  shippingAddresses: [],
+  orders: [],
 };
 
 export const useUserStore = defineStore("user", () => {
@@ -29,23 +31,34 @@ export const useUserStore = defineStore("user", () => {
   const user = computed(() => userState);
   const hasBalance = computed(() => !!userState.mi777Balance);
   const isConnected = computed(() => !!userState.wallet);
-  const hasSubmitted = computed(() => userState.shippingAddresses.length > 0);
+  const hasSubmitted = computed(() => userState.orders.length > 0);
 
   const connect = async () => {
     const web3 = new Web3(Web3.givenProvider)
 
-    userState.wallet = (await web3.eth.requestAccounts())[0];
-    await getUserBalance();
+    userState.wallet = '123' // (await web3.eth.requestAccounts())[0];
+    await getUserBalance('123');
+    // try {
+    // } catch (error) {
+    // console.error('Error fetching balance from wallet ' + userState.wallet)
+    // }
   }
 
-  const getUserBalance = async () => {
-    if (!isConnected) return console.error('USER NOTE CONNECTED, CANT GET BALANCE');
+  const getUserBalance = async (wallet: string) => {
+    if (!isConnected) return console.error('USER NOT CONNECTED, CANT GET BALANCE');
+    const endpoint = `${ envUrl }?=${ wallet }`;
+console.log({endpoint});
 
-    const balanceResponse: BalanceResponse = await (await fetch(GCF_LOCAL_URL, {
-      method: 'GET',
-    })).json();
+    try {
+      const balanceResponse: BalanceResponse = await (await fetch(endpoint, {
+        method: 'GET',
+      })).json();
 
-    userState.mi777Balance = balanceResponse[0].balance;
+      userState.mi777Balance = balanceResponse[0].balance;
+
+    } catch (error) {
+      console.error('Error fetching balance from wallet ' + userState.wallet);
+    }
   }
 
 
