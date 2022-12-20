@@ -36,18 +36,13 @@ export const useUserStore = defineStore("user", () => {
   const connect = async () => {
     const web3 = new Web3(Web3.givenProvider)
 
-    userState.wallet = '123' // (await web3.eth.requestAccounts())[0];
-    await getUserBalance('123');
-    // try {
-    // } catch (error) {
-    // console.error('Error fetching balance from wallet ' + userState.wallet)
-    // }
+    userState.wallet = (await web3.eth.requestAccounts())[0];
+    await getUserBalance();
   }
 
-  const getUserBalance = async (wallet: string) => {
-    if (!isConnected) return console.error('USER NOT CONNECTED, CANT GET BALANCE');
+  const getUserBalance = async (wallet?: string) => {
+    if (!(isConnected && userState.wallet)) return console.error('USER NOT CONNECTED, CANT GET BALANCE');
     const endpoint = `${ envUrl }?=${ wallet }`;
-console.log({endpoint});
 
     try {
       const balanceResponse: BalanceResponse = await (await fetch(endpoint, {
