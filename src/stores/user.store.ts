@@ -6,7 +6,7 @@ import Web3 from 'web3';
 const GCF_LOCAL_URL = 'http://localhost:5000/my-lady-8b48f/us-central1/getMiladyBalance';
 const GCF_URL = 'https://us-central1-my-lady-8b48f.cloudfunctions.net/getMiladyBalance';
 
-const envUrl = GCF_LOCAL_URL
+const envUrl = GCF_URL
 
 export interface UserState {
   userData: UserModel;
