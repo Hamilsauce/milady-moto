@@ -42,12 +42,12 @@ const handleFormButtonClick = async (e: Event): Promise<void> => {
   <section id="app-body">
     <div class="container">
 
-      <model-viewer
+      <!-- <model-viewer
       id="model-viewer"
         alt="Neil Armstrong's Spacesuit from the Smithsonian Digitization Programs Office and National Air and Space Museum"
         src="/src/assets/mi777_3d.glb"
         shadow-intensity="1" camera-controls
-        touch-action="pan-y"></model-viewer>
+        touch-action="pan-y"></model-viewer> -->
     </div>
     <div class="container">
       <iframe src="https://hamilsauce.github.io/playground/simple-pixel-editor/" width="430" height="800"
