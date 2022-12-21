@@ -28,7 +28,7 @@ export interface Order {
 }
 
 export interface UserModel {
-  mi777Balance: number | null;
+  mi777Balance: number | null | any;
   wallet: string | null;
   orders: Order[];
 }

@@ -5,8 +5,9 @@ import Web3 from 'web3';
 
 const GCF_LOCAL_URL = 'http://localhost:5000/my-lady-8b48f/us-central1/getMiladyBalance';
 const GCF_URL = 'https://us-central1-my-lady-8b48f.cloudfunctions.net/getMiladyBalance';
+const IAN_WALLET = '0x587376ed782a73966c1b9d9a00635613a6e539dd';
 
-const envUrl = GCF_URL
+const envUrl = GCF_LOCAL_URL
 
 export interface UserState {
   userData: UserModel;
@@ -37,22 +38,22 @@ export const useUserStore = defineStore("user", () => {
     const web3 = new Web3(Web3.givenProvider)
 
     userState.wallet = (await web3.eth.requestAccounts())[0];
-    await getUserBalance();
+    await getUserBalance(userState.wallet);
   }
 
   const getUserBalance = async (wallet?: string) => {
-    if (!(isConnected && userState.wallet)) return console.error('USER NOT CONNECTED, CANT GET BALANCE');
-    const endpoint = `${ envUrl }?=${ wallet }`;
+    if (!(isConnected && wallet)) return console.error('USER NOT CONNECTED, CANT GET BALANCE');
+    const endpoint = `${ envUrl }?wallet=${ IAN_WALLET }`;
 
     try {
-      const balanceResponse: BalanceResponse = await (await fetch(endpoint, {
+      const balanceResponse: any = await (await fetch(endpoint, {
         method: 'GET',
       })).json();
 
-      userState.mi777Balance = balanceResponse[0].balance;
+      userState.mi777Balance = balanceResponse.entries[0].balance;
 
     } catch (error) {
-      console.error('Error fetching balance from wallet ' + userState.wallet);
+      console.error(error);
     }
   }
 
