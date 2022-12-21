@@ -5,7 +5,6 @@ import Web3 from 'web3';
 
 const GCF_LOCAL_URL = 'http://localhost:5000/my-lady-8b48f/us-central1/getMiladyBalance';
 const GCF_URL = 'https://us-central1-my-lady-8b48f.cloudfunctions.net/getMiladyBalance';
-const IAN_WALLET = '0x587376ed782a73966c1b9d9a00635613a6e539dd';
 
 const envUrl = GCF_LOCAL_URL
 
@@ -43,20 +42,19 @@ export const useUserStore = defineStore("user", () => {
 
   const getUserBalance = async (wallet?: string) => {
     if (!(isConnected && wallet)) return console.error('USER NOT CONNECTED, CANT GET BALANCE');
-    const endpoint = `${ envUrl }?wallet=${ IAN_WALLET }`;
+    const endpoint = `${ envUrl }/${ wallet }`;
 
     try {
       const balanceResponse: any = await (await fetch(endpoint, {
         method: 'GET',
       })).json();
 
-      userState.mi777Balance = balanceResponse.entries[0].balance;
+      userState.mi777Balance = balanceResponse.balance
 
     } catch (error) {
       console.error(error);
     }
   }
-
 
   return {
     user,

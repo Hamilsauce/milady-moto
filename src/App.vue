@@ -24,84 +24,83 @@ const handleFormButtonClick = async (e: Event): Promise<void> => {
 </script>
 
 <template>
-  <div id="connect-container">
-    <button @click="handleConnectClick">Connect</button>
+  <div id="app">
+    <div id="connect-container">
+      <button @click="handleConnectClick">Connect</button>
+    </div>
+    <header id="app-header" :class="{ connected: isLegit }">
+      <div id="app-header-left">
+        <div id="app-header-left">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolorum id esse
+          quos laudantium accusamus soluta fugiat distinctio deserunt culpa commodi, fuga pariatur optio voluptatum
+          accusantium necessitatibus facilis debitis qui!</div>
+      </div>
+      <div id="app-header-right">
+        <button>PLACE MY JERSEY ORDER</button>
+      </div>
+    </header>
+    <section id="app-body">
+      <div class="container">
+        <!-- <model-viewer
+        id="model-viewer"
+          alt="Neil Armstrong's Spacesuit from the Smithsonian Digitization Programs Office and National Air and Space Museum"
+          src="/src/assets/mi777_3d.glb"
+          shadow-intensity="1" camera-controls
+          touch-action="pan-y"></model-viewer> -->
+      </div>
+      <div class="container">
+        <iframe src="https://hamilsauce.github.io/playground/simple-pixel-editor/" width="430" height="800"
+          frameborder="0"></iframe>
+      </div>
+      <div class="container">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+        quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+        quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+        quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+        quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+        quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+      </div>
+      <div class="container">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+        quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+        quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+        quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+        quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+        quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+      </div>
+      <div class="container">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+        quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+        quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+        quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+        quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+        quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+      </div>
+      <div class="container">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+        quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+        quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+        quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+        quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
+        quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
+      </div>
+    </section>
   </div>
-  <header id="app-header" :class="{ connected: isLegit }">
-    <div id="app-header-left">
-      <div id="app-header-left">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolorum id esse
-        quos laudantium accusamus soluta fugiat distinctio deserunt culpa commodi, fuga pariatur optio voluptatum
-        accusantium necessitatibus facilis debitis qui!</div>
-
-    </div>
-    <div id="app-header-right">
-      <button>PLACE MY JERSEY ORDER</button>
-    </div>
-
-  </header>
-  <section id="app-body">
-    <div class="container">
-
-      <!-- <model-viewer
-      id="model-viewer"
-        alt="Neil Armstrong's Spacesuit from the Smithsonian Digitization Programs Office and National Air and Space Museum"
-        src="/src/assets/mi777_3d.glb"
-        shadow-intensity="1" camera-controls
-        touch-action="pan-y"></model-viewer> -->
-    </div>
-    <div class="container">
-      <iframe src="https://hamilsauce.github.io/playground/simple-pixel-editor/" width="430" height="800"
-        frameborder="0"></iframe>
-    </div>
-    <div class="container">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
-      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
-      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
-      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
-      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
-      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
-    </div>
-    <div class="container">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
-      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
-      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
-      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
-      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
-      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
-    </div>
-    <div class="container">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
-      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
-      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
-      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
-      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
-      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
-    </div>
-    <div class="container">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
-      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
-      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
-      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
-      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
-      quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
-    </div>
-  </section>
   <!-- <footer id="app-footer">
     <div class="container">
       footer
@@ -190,8 +189,8 @@ button {
 
 #connect-container {
   position: absolute;
-  right: 146px;
-  top: 146px;
+  right: 5%;
+  top: 5%;
   /* position: sticky; */
   /* top: 0;
   left: 0; */
@@ -199,8 +198,8 @@ button {
 }
 
 #connect-container button {
-  width: 235px;
-  height: 64.81px;
+  width: 100%;
+  height: 100%;
   padding: 12px 24px;
   border: none;
   border-radius: 32px;
