@@ -1,8 +1,9 @@
 <script lang="ts" setup>
 import { useUserStore } from '@/stores/user.store';
-import { firestore } from '../../firestore/db';
-import { collection, setDoc, addDoc } from "firebase/firestore";
+import { firestore } from '@/firestore/firestore';
 import { ref } from 'vue';
+
+const { collection, doc, setDoc, addDoc } = firestore;
 
 const data = ref({
   name: '',
@@ -18,7 +19,7 @@ const userStore = useUserStore()
 const handleSubmit = () => {
   console.log('HANDLE SUBMIT');
 
-  addDoc(collection(firestore, 'tester1'), data.value);
+  addDoc(collection('tester1'), data.value);
 
   Object.assign(data.value, {
     name: '',
@@ -114,13 +115,12 @@ const handleSubmit = () => {
   font-size: 18px;
 }
 
-@media (min-width: 1024px) {
-
+/* @media (min-width: 1024px) {
   .shipping-form {
-    /* min-height: 100vh; */
-    /* display: flex;0 */
-    /* align-items: center; */
-    /* background-color: #4f24c6; */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background-color: #4f24c6;
   }
-}
+} */
 </style>

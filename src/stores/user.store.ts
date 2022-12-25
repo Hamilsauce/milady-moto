@@ -1,13 +1,13 @@
-import { ref, computed, reactive } from "vue";
+import { computed, reactive } from "vue";
 import { defineStore } from "pinia";
-import type { UserModel } from "@/models/user.model";
+import type { Order, UserModel } from "@/models/user.model";
 import Web3 from 'web3';
+import { getUser } from "@/firestore/db";
 
 const GCF_LOCAL_URL = 'http://localhost:5000/my-lady-8b48f/us-central1/getMiladyBalance';
 const GCF_URL = 'https://us-central1-my-lady-8b48f.cloudfunctions.net/getMiladyBalance';
-const IAN_WALLET = '0x587376ed782a73966c1b9d9a00635613a6e539dd';
 
-const envUrl = GCF_URL
+const MILADY_BALANCE_ENDPOINT = GCF_URL
 
 export interface UserState {
   userData: UserModel;
@@ -27,6 +27,8 @@ const initialUser: UserModel = {
 };
 
 export const useUserStore = defineStore("user", () => {
+  const web3 = new Web3(Web3.givenProvider);
+
   const userState = reactive(initialUser);
 
   const user = computed(() => userState);
@@ -34,26 +36,73 @@ export const useUserStore = defineStore("user", () => {
   const isConnected = computed(() => !!userState.wallet);
   const hasSubmitted = computed(() => userState.orders.length > 0);
 
+  const init = async () => {
+    const wallet = (await web3.eth.getAccounts())[0];
+
+
+
+    if (wallet) {
+      const mi777Balance = await getBalanceFromWallet(wallet);
+      Object.assign(userState, await getUser(wallet, {
+        wallet,
+        mi777Balance,
+      }));
+    }
+  }
+
   const connect = async () => {
     const web3 = new Web3(Web3.givenProvider)
 
-    userState.wallet = (await web3.eth.requestAccounts())[0];
+    const wallet = (await web3.eth.requestAccounts())[0];
+    const mi777Balance = await getBalanceFromWallet(wallet);
 
-    await getUserBalance(userState.wallet);
+    // const userDoc = await getDoc(doc(`users/${ wallet }`));
+    // console.warn({ userDoc });
+    // console.log('user exists', userDoc.exists());
+    console.log({
+      wallet,
+      mi777Balance,
+    });
+
+
+    Object.assign(userState, await getUser(wallet, {
+      wallet,
+      mi777Balance,
+    }));
+
+
+    // if (userDoc.exists()) {
+    //   /*
+    //         TODO
+    //         Update balance user balance and then Fetch from firestore;
+    //   */
+    // } else {
+    //   /*
+    //         TODO
+    //         Create new user document with wallet info, fetch from firestore.
+    //   */
+    // }
+
+
+    // const userDoc = doc(`users/${ wallet }`);
+    // userDoc.
+    // userState.wallet = (await web3.eth.requestAccounts())[0];
+    // await getBalanceFromWallet(userState.wallet);
   }
 
-  const getUserBalance = async (wallet?: string) => {
+  const addOrder = async (wallet: string, order: Order) => { }
+
+  const getBalanceFromWallet = async (wallet?: string) => {
     if (!(isConnected && wallet)) return console.error('USER NOT CONNECTED, CANT GET BALANCE');
 
-    const endpoint = `${ envUrl }/${ wallet }`;
+    const endpoint = `${ MILADY_BALANCE_ENDPOINT }/${ wallet }`;
 
     try {
       const balanceResponse: any = await (await fetch(endpoint, {
         method: 'GET',
       })).json();
 
-      userState.mi777Balance = balanceResponse.balance
-
+      return balanceResponse.balance
     } catch (error) {
       console.error(error);
     }
@@ -65,6 +114,7 @@ export const useUserStore = defineStore("user", () => {
     isConnected,
     hasSubmitted,
     connect,
-    getUserBalance
+    getBalanceFromWallet,
+    init
   };
 });

@@ -4,12 +4,11 @@ import HelloWorld from "./components/HelloWorld.vue";
 import { computed } from "vue";
 import { useUserStore } from "./stores/user.store";
 import router from "./router";
-// import ModelViewerWrapper from "./components/ModelViewerWrapper.vue";
-// const butt = model
 
 const userStore = useUserStore();
-
+userStore.init()
 const isLegit = computed(() => userStore.isConnected && userStore.hasBalance);
+const connectButtonContent = computed(() => userStore.isConnected ? (userStore.user.wallet?.slice(0, 3) + '...' + userStore.user.wallet?.slice(-4, -1)).toLowerCase() : 'Connect');
 
 const handleConnectClick = async () => {
   userStore.connect();
@@ -26,7 +25,7 @@ const handleFormButtonClick = async (e: Event): Promise<void> => {
 <template>
   <div id="app">
     <div id="connect-container">
-      <button @click="handleConnectClick">Connect</button>
+      <button @click="handleConnectClick">{{ connectButtonContent }}</button>
     </div>
     <header id="app-header" :class="{ connected: isLegit }">
       <div id="app-header-left">
@@ -110,10 +109,7 @@ const handleFormButtonClick = async (e: Event): Promise<void> => {
 </template>
 
 <style scoped>
-* {
-  /* border: 1px solid black; */
-
-}
+/* * {} */
 
 button {
   cursor: pointer;
@@ -146,7 +142,7 @@ button {
   width: 50%;
 }
 
-#app-header-right {}
+/* #app-header-right {} */
 
 #app-header-right button {
   padding: 32px;

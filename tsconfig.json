@@ -20,7 +20,7 @@
         "src/*"
       ],
       "@@firestore": [
-        "firestore/db.ts"
+        "src/firestore/db.tstore.tstore.ts"
       ]
     }
   },
