@@ -39,7 +39,7 @@ const handleFormButtonClick = async (e: Event): Promise<void> => {
     </header>
     <main id="app-body">
       <div class="container" data-row="0">
-        <model-viewer id="mi777-model-viewer" src="src/assets/mi777.glb" ar="" ar-modes="webxr scene-viewer quick-look"
+        <model-viewer id="mi777-model-viewer" src="./assets/mi777.glb" ar="" ar-modes="webxr scene-viewer quick-look"
           camera-controls="" environment-image="neutral" shadow-intensity="0" autoplay="" ar-status="not-presenting">
         </model-viewer>
       </div>
