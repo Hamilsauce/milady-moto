@@ -37,14 +37,11 @@ const handleFormButtonClick = async (e: Event): Promise<void> => {
         <button>PLACE MY JERSEY ORDER</button>
       </div>
     </header>
-    <section id="app-body">
-      <div class="container">
-        <!-- <model-viewer
-        id="model-viewer"
-          alt="Neil Armstrong's Spacesuit from the Smithsonian Digitization Programs Office and National Air and Space Museum"
-          src="/src/assets/mi777_3d.glb"
-          shadow-intensity="1" camera-controls
-          touch-action="pan-y"></model-viewer> -->
+    <main id="app-body">
+      <div class="container" data-row="0">
+        <model-viewer id="mi777-model-viewer" src="src/assets/mi777.glb" ar="" ar-modes="webxr scene-viewer quick-look"
+          camera-controls="" environment-image="neutral" shadow-intensity="0" autoplay="" ar-status="not-presenting">
+        </model-viewer>
       </div>
       <div class="container">
         <iframe src="https://hamilsauce.github.io/playground/simple-pixel-editor/" width="430" height="800"
@@ -98,7 +95,7 @@ const handleFormButtonClick = async (e: Event): Promise<void> => {
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
         quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
       </div>
-    </section>
+    </main>
   </div>
   <!-- <footer id="app-footer">
     <div class="container">
@@ -133,16 +130,11 @@ button {
 
 }
 
-#model-viewer {
-  width: 100%;
-  height: 100%;
-}
+
 
 #app-header-left {
   width: 50%;
 }
-
-/* #app-header-right {} */
 
 #app-header-right button {
   padding: 32px;
@@ -161,13 +153,9 @@ button {
   left: 0;
   display: flex;
   flex-direction: column;
-  /* justify-content: flex-start; */
-  /* align-items: flex-start; */
-  gap: 500px;
-  padding: 32px;
+  /* gap: 500px; */
   z-index: 5;
   height: 100%;
-  /* min-height: 3000px; */
   overflow: scroll;
 }
 
@@ -179,17 +167,25 @@ button {
   width: 100%;
   height: 100%;
   gap: 0px;
-  height: fit-content;
-  min-height: 500px;
+  min-height: 100vh;
+}
+
+.container[data-row="0"] {
+  background-image: url('./assets/content-rows/0/0_0.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+}
+
+#mi777-model-viewer {
+  width: 100%;
+  height: 100%;
 }
 
 #connect-container {
   position: absolute;
   right: 5%;
   top: 5%;
-  /* position: sticky; */
-  /* top: 0;
-  left: 0; */
   z-index: 500;
 }
 
@@ -203,6 +199,5 @@ button {
   font-weight: 600;
   font-size: 18px;
   z-index: 501;
-
 }
 </style>
