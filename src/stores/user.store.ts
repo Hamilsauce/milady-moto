@@ -32,17 +32,19 @@ export const useUserStore = defineStore("user", () => {
   const userState = reactive(initialUser);
 
   const user = computed(() => userState);
-  const hasBalance = computed(() => !!userState.mi777Balance);
+  const balance = computed(() => userState.mi777Balance);
+  const orders = computed(() => userState.orders);
+
+  const hasBalance = computed(() => balance.value > 0);
+  const hasUnassignedTokens = computed(() => hasBalance.value && userState.orders.length !== balance.value);
   const isConnected = computed(() => !!userState.wallet);
-  const hasSubmitted = computed(() => userState.orders.length > 0);
 
   const init = async () => {
     const wallet = (await web3.eth.getAccounts())[0];
 
-
-
     if (wallet) {
-      const mi777Balance = await getBalanceFromWallet(wallet);
+      const mi777Balance = await fetchMI777Balance(wallet);
+
       Object.assign(userState, await getUser(wallet, {
         wallet,
         mi777Balance,
@@ -54,7 +56,7 @@ export const useUserStore = defineStore("user", () => {
     const web3 = new Web3(Web3.givenProvider)
 
     const wallet = (await web3.eth.requestAccounts())[0];
-    const mi777Balance = await getBalanceFromWallet(wallet);
+    const mi777Balance = await fetchMI777Balance(wallet);
 
     // const userDoc = await getDoc(doc(`users/${ wallet }`));
     // console.warn({ userDoc });
@@ -87,12 +89,12 @@ export const useUserStore = defineStore("user", () => {
     // const userDoc = doc(`users/${ wallet }`);
     // userDoc.
     // userState.wallet = (await web3.eth.requestAccounts())[0];
-    // await getBalanceFromWallet(userState.wallet);
+    // await fetchMI777Balance(userState.wallet);
   }
 
   const addOrder = async (wallet: string, order: Order) => { }
 
-  const getBalanceFromWallet = async (wallet?: string) => {
+  const fetchMI777Balance = async (wallet?: string) => {
     if (!(isConnected && wallet)) return console.error('USER NOT CONNECTED, CANT GET BALANCE');
 
     const endpoint = `${ MILADY_BALANCE_ENDPOINT }/${ wallet }`;
@@ -110,11 +112,13 @@ export const useUserStore = defineStore("user", () => {
 
   return {
     user,
-    hasBalance,
+    orders,
+    balance,
+    fetchMI777Balance,
     isConnected,
-    hasSubmitted,
+    hasUnassignedTokens,
+    hasBalance,
+    init,
     connect,
-    getBalanceFromWallet,
-    init
   };
 });

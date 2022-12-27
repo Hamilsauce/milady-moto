@@ -1,12 +1,11 @@
 <script setup lang="ts">
-
-const handleMintLinkClick = (e: Event): void => {
-  const popup = open('https://www.scatter.art/collection/0x8fc0d90f2c45a5e7f94904075c952e0943cfccfd?tab=mint', 'Mint your Milady!', 'popup=true');
-};
+defineProps({
+  imageContent: Array
+})
 </script>
 
 <template>
-  <div class="row" @click="handleMintLinkClick">
+  <div class="content-row">
     <i>
       <slot name="icon"></slot>
     </i>
