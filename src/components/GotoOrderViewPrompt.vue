@@ -96,10 +96,6 @@ const show = computed(() => userStore.hasUnassignedTokens);
   font-weight: 800;
 }
 
-/* #prompt-header-left>div:nth-child(3)>div:nth-child(2) {} */
-
-
-
 #prompt-header-right {
   display: flex;
   flex-direction: column;

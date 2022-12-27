@@ -56,7 +56,7 @@ const handleFormButtonClick = async (e: Event): Promise<void> => {
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
         quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
       </div>
-      <div class="container">
+      <!-- <div class="container">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
         quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
@@ -91,7 +91,7 @@ const handleFormButtonClick = async (e: Event): Promise<void> => {
         quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
         quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
-      </div>
+      </div> -->
     </main>
   </div>
 </template>
@@ -136,7 +136,6 @@ const handleFormButtonClick = async (e: Event): Promise<void> => {
   font-weight: 600;
   font-size: 40px;
 }
-/* .container[data-row="0"] .text-content > div:nth-child(2){} */
 
 #mi777-model-viewer {
   width: 80%;
