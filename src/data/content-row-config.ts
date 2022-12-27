@@ -3,103 +3,103 @@ export const contentRows = {
     {
       row: 0,
       index: 0,
-      type: "jpg",
-      src: "src/assets/content-rows/gallery/0_0.jpg",
-      fileIndex: 12
+      type: 'jpg',
+      src: 'src/assets/content-rows/0_0.jpg',
+      fileIndex: 0
     }
   ],
   1: [
     {
       row: 1,
       index: 0,
-      type: "png",
-      src: "src/assets/content-rows/gallery/1_0.png",
-      fileIndex: 13
-    },
-    {
-      row: 1,
-      index: 1,
-      type: "png",
-      src: "src/assets/content-rows/gallery/1_1.png",
+      type: 'jpg',
+      src: 'src/assets/content-rows/1_0.jpg',
       fileIndex: 14
     },
     {
       row: 1,
-      index: 2,
-      type: "png",
-      src: "src/assets/content-rows/gallery/1_2.png",
+      index: 1,
+      type: 'jpg',
+      src: 'src/assets/content-rows/1_1.jpg',
       fileIndex: 15
     },
     {
       row: 1,
-      index: 3,
-      type: "png",
-      src: "src/assets/content-rows/gallery/1_3.png",
+      index: 2,
+      type: 'jpg',
+      src: 'src/assets/content-rows/1_2.jpg',
       fileIndex: 16
     },
     {
       row: 1,
-      index: 4,
-      type: "png",
-      src: "src/assets/content-rows/gallery/1_4.png",
+      index: 3,
+      type: 'jpg',
+      src: 'src/assets/content-rows/1_3.jpg',
       fileIndex: 17
     },
     {
       row: 1,
-      index: 5,
-      type: "png",
-      src: "src/assets/content-rows/gallery/1_5.png",
+      index: 4,
+      type: 'jpg',
+      src: 'src/assets/content-rows/1_4.jpg',
       fileIndex: 18
     },
     {
       row: 1,
-      index: 6,
-      type: "gif",
-      src: "src/assets/content-rows/gallery/1_6.gif",
+      index: 5,
+      type: 'jpg',
+      src: 'src/assets/content-rows/1_5.jpg',
       fileIndex: 19
     },
     {
       row: 1,
       index: 6,
-      type: "png",
-      src: "src/assets/content-rows/gallery/1_6.png",
+      type: 'gif',
+      src: 'src/assets/content-rows/1_6.gif',
       fileIndex: 20
     },
     {
       row: 1,
-      index: 7,
-      type: "png",
-      src: "src/assets/content-rows/gallery/1_7.png",
+      index: 6,
+      type: 'jpg',
+      src: 'src/assets/content-rows/1_6.jpg',
       fileIndex: 21
+    },
+    {
+      row: 1,
+      index: 7,
+      type: 'jpg',
+      src: 'src/assets/content-rows/1_7.jpg',
+      fileIndex: 22
     }
   ],
   2: [
     {
       row: 2,
       index: 0,
-      type: "png",
-      src: "src/assets/content-rows/gallery/2_0.png",
+      type: 'png',
+      src: 'src/assets/content-rows/2_0.png',
       fileIndex: 23
     },
     {
       row: 2,
       index: 1,
-      type: "png",
-      src: "src/assets/content-rows/gallery/2_1.png",
+      type: 'png',
+      src: 'src/assets/content-rows/2_1.png',
       fileIndex: 24
     },
     {
       row: 2,
       index: 2,
-      type: "png",
-      src: "src/assets/content-rows/gallery/2_2.png",
+      type: 'png',
+      src: 'src/assets/content-rows/2_2.png',
       fileIndex: 25
     },
     {
       row: 2,
       index: 3,
-      type: "png",
-      src: "src/assets/content-rows/gallery/2_3.png",
+      type: 'png',
+      src: 'src/assets/content-rows/2_3.png',
       fileIndex: 26
     }
   ],
@@ -107,209 +107,230 @@ export const contentRows = {
     {
       row: 3,
       index: 0,
-      type: "jpg",
-      src: "src/assets/content-rows/gallery/3_0_MINT.jpg",
+      type: 'jpg',
+      src: 'src/assets/content-rows/3_0.jpg',
       fileIndex: 27
     },
     {
       row: 3,
       index: 1,
-      type: "jpg",
-      src: "src/assets/content-rows/gallery/3_1_CONNECT.jpg",
+      type: 'jpg',
+      src: 'src/assets/content-rows/3_1.jpg',
       fileIndex: 28
     },
     {
       row: 3,
       index: 2,
-      type: "jpg",
-      src: "src/assets/content-rows/gallery/3_2_END OF MINT.jpg",
+      type: 'jpg',
+      src: 'src/assets/content-rows/3_2.jpg',
       fileIndex: 29
+    },
+    {
+      row: 3,
+      index: 3,
+      type: 'png',
+      src: 'src/assets/content-rows/3_3.png',
+      fileIndex: 30
+    },
+    {
+      row: 3,
+      index: 4,
+      type: 'png',
+      src: 'src/assets/content-rows/3_4.png',
+      fileIndex: 31
+    },
+    {
+      row: 3,
+      index: 5,
+      type: 'png',
+      src: 'src/assets/content-rows/3_5.png',
+      fileIndex: 32
     }
   ],
   4: [
     {
       row: 4,
       index: 0,
-      type: "gif",
-      src: "src/assets/content-rows/gallery/4_0.gif",
-      fileIndex: 30
+      type: 'gif',
+      src: 'src/assets/content-rows/4_0.gif',
+      fileIndex: 33
     },
     {
       row: 4,
       index: 1,
-      type: "png",
-      src: "src/assets/content-rows/gallery/4_1.png",
-      fileIndex: 31
+      type: 'png',
+      src: 'src/assets/content-rows/4_1.png',
+      fileIndex: 34
     },
     {
       row: 4,
       index: 2,
-      type: "gif",
-      src: "src/assets/content-rows/gallery/4_2_leprechaun-icegif-3.gif",
-      fileIndex: 32
+      type: 'gif',
+      src: 'src/assets/content-rows/4_2.gif',
+      fileIndex: 35
     },
     {
       row: 4,
       index: 3,
-      type: "png",
-      src: "src/assets/content-rows/gallery/4_3.png",
-      fileIndex: 33
+      type: 'png',
+      src: 'src/assets/content-rows/4_3.png',
+      fileIndex: 36
     }
   ],
   5: [
     {
       row: 5,
       index: 0,
-      type: "png",
-      src: "src/assets/content-rows/gallery/5_0.png",
-      fileIndex: 34
+      type: 'png',
+      src: 'src/assets/content-rows/5_0.png',
+      fileIndex: 37
     }
   ],
   6: [
     {
       row: 6,
       index: 0,
-      type: "png",
-      src: "src/assets/content-rows/gallery/6_0.png",
-      fileIndex: 35
+      type: 'png',
+      src: 'src/assets/content-rows/6_0.png',
+      fileIndex: 38
     }
   ],
   7: [
     {
       row: 7,
       index: 0,
-      type: "png",
-      src: "src/assets/content-rows/gallery/7_0.png",
-      fileIndex: 36
+      type: 'png',
+      src: 'src/assets/content-rows/7_0.png',
+      fileIndex: 39
     }
   ],
   8: [
     {
       row: 8,
       index: 0,
-      type: "gif",
-      src: "src/assets/content-rows/gallery/8_0_mimotoglitter.gif",
-      fileIndex: 37
+      type: 'gif',
+      src: 'src/assets/content-rows/8_0.gif',
+      fileIndex: 40
     },
     {
       row: 8,
       index: 2,
-      type: "png",
-      src: "src/assets/content-rows/gallery/8_2.png",
-      fileIndex: 38
+      type: 'png',
+      src: 'src/assets/content-rows/8_2.png',
+      fileIndex: 41
     },
     {
       row: 8,
       index: 3,
-      type: "png",
-      src: "src/assets/content-rows/gallery/8_3.png",
-      fileIndex: 39
+      type: 'png',
+      src: 'src/assets/content-rows/8_3.png',
+      fileIndex: 42
     }
   ],
   9: [
     {
       row: 9,
       index: 0,
-      type: "mp4",
-      src: "src/assets/content-rows/gallery/9_0_Milady_Akira_Screengrab_alt.mp4",
-      fileIndex: 40
+      type: 'mp4',
+      src: 'src/assets/content-rows/9_0.mp4',
+      fileIndex: 43
     }
   ],
   10: [
     {
       row: 10,
       index: 0,
-      type: "mp4",
-      src: "src/assets/content-rows/gallery/10_0_miladyDancing3D.mp4",
-      fileIndex: 22
+      type: 'mp4',
+      src: 'src/assets/content-rows/10_0.mp4',
+      fileIndex: 11
     }
   ],
   11: [
     {
       row: 11,
       index: 0,
-      type: "svg",
-      src: "src/assets/content-rows/gallery/11_0.svg",
-      fileIndex: 10
+      type: 'svg',
+      src: 'src/assets/content-rows/11_0.svg',
+      fileIndex: 12
     },
     {
       row: 11,
       index: 2,
-      type: "png",
-      src: "src/assets/content-rows/gallery/11_2.png",
-      fileIndex: 11
+      type: 'png',
+      src: 'src/assets/content-rows/11_2.png',
+      fileIndex: 13
     }
   ],
   100: [
     {
       row: 100,
-      index: 1,
-      type: "jpg",
-      src: "src/assets/content-rows/gallery/G_1_Model is 64 wearing an XL.jpg",
+      index: 0,
+      type: 'jpg',
+      src: 'src/assets/content-rows/100_0.jpg',
       fileIndex: 1
     },
     {
       row: 100,
-      index: 2,
-      type: "jpg",
-      src: "src/assets/content-rows/gallery/G_2_Model is 57 wearing a S.jpg",
+      index: 1,
+      type: 'jpg',
+      src: 'src/assets/content-rows/100_1.jpg',
       fileIndex: 2
     },
     {
       row: 100,
-      index: 3,
-      type: "jpg",
-      src: "src/assets/content-rows/gallery/G_3_Model is 57 wearing a S.jpg",
+      index: 2,
+      type: 'jpg',
+      src: 'src/assets/content-rows/100_2.jpg',
       fileIndex: 3
     },
     {
       row: 100,
-      index: 4,
-      type: "jpg",
-      src: "src/assets/content-rows/gallery/G_4_Model is 58 wearing a M.jpg",
+      index: 3,
+      type: 'jpg',
+      src: 'src/assets/content-rows/100_3.jpg',
       fileIndex: 4
     },
     {
       row: 100,
-      index: 5,
-      type: "jpg",
-      src: "src/assets/content-rows/gallery/G_5_Model is 62 wearing a XL_Model is 511 wearing a XL.jpg",
+      index: 4,
+      type: 'jpg',
+      src: 'src/assets/content-rows/100_4.jpg',
       fileIndex: 5
     },
     {
       row: 100,
-      index: 6,
-      type: "jpg",
-      src: "src/assets/content-rows/gallery/G_6_Jersey-Spread.jpg",
+      index: 5,
+      type: 'jpg',
+      src: 'src/assets/content-rows/100_5.jpg',
       fileIndex: 6
     },
     {
       row: 100,
-      index: 7,
-      type: "jpg",
-      src: "src/assets/content-rows/gallery/G_7_Jersey-Spread.jpg",
+      index: 6,
+      type: 'jpg',
+      src: 'src/assets/content-rows/100_6.jpg',
       fileIndex: 7
     },
     {
       row: 100,
-      index: 8,
-      type: "jpg",
-      src: "src/assets/content-rows/gallery/G_8_Jersey-Tag, size L  ゆっくりしていってね!.jpg",
+      index: 7,
+      type: 'jpg',
+      src: 'src/assets/content-rows/100_7.jpg',
       fileIndex: 8
     },
-    // {
-    //   row: 100,
-    //   index: 9,
-    //   type: "jpg",
-    //   src: "src/assets/content-rows/gallery/G_9_Model is 63 wearing a L_Model is 52 wearing a XL.jpg",
-    //   fileIndex: 9
-    // },
-    // {
-    //   row: 100,
-    //   index: 10,
-    //   type: "jpg",
-    //   src: "src/assets/content-rows/gallery/G_10_Model is 52 wearing a XL.jpg",
-    //   fileIndex: 0
-    // }
+    {
+      row: 100,
+      index: 8,
+      type: 'jpg',
+      src: 'src/assets/content-rows/100_8.jpg',
+      fileIndex: 9
+    },
+    {
+      row: 100,
+      index: 9,
+      type: 'jpg',
+      src: 'src/assets/content-rows/100_9.jpg',
+      fileIndex: 10
+    }
   ]
-};
+}

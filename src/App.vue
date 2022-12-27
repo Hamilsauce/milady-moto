@@ -6,7 +6,7 @@ import GalleryGrid from "@/components/GalleryGrid.vue";
 import { computed } from "vue";
 import router from "@/router";
 import { useUserStore } from "@/stores/user.store";
-import { contentRows } from '@/data/content-row-config'
+import { contentRows } from '@/data/old-content-row-config.js'
 
 const userStore = useUserStore();
 console.log(contentRows)

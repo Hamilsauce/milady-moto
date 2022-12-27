@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import GalleryImage from "@/components/GalleryImage.vue";
-import { contentRows } from '@/data/content-row-config'
+import { contentRows } from '@/data/old-content-row-config.js'
 import { ref } from 'vue';
 
 const galleryImages = contentRows['100']
