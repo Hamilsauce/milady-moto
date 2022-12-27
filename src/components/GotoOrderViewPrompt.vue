@@ -16,7 +16,11 @@ const show = computed(() => userStore.hasUnassignedTokens);
 <template>
   <header id="prompt-header" :class="{ connected: show }">
     <div id="prompt-header-left">
-      <div class="prompt-row">✅ Great job! You minted 3 mi777 Jersey Tokens.</div>
+      <div class="prompt-row">
+        <div>✅ Great job! You minted {{ userStore.balance }} mi777 Jersey Tokens.</div>
+        <div>🔲 But you've only placed {{ userStore.orders.length }} orders.</div>
+
+      </div>
       <div class="prompt-row">
         <div class="text--purple">Proceed to the ZK-Order Experience</div>
         <div class="text--purple">to Get your Physical Jerseys!</div>
@@ -41,22 +45,19 @@ const show = computed(() => userStore.hasUnassignedTokens);
   left: 0;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   gap: 32px;
   border: 1px solid black;
   overflow: hidden;
   height: 0px;
   padding: 0 64px;
-  font-size: 20px;
   background-color: var(--order-prompt-mint);
   color: black;
   z-index: 10;
   font-family: Comic Sans MS;
-  font-size: 24px;
   font-weight: 400;
   line-height: 56px;
-  letter-spacing: 0em;
   text-align: left;
   letter-spacing: -1.25px;
   font-size: 20px;
@@ -70,7 +71,15 @@ const show = computed(() => userStore.hasUnassignedTokens);
   gap: 32px;
 }
 
-/* #prompt-header-left>div:nth-child(1) {} */
+#prompt-header-left>div:nth-child(1) {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+
+  line-height: 32px;
+}
 
 #prompt-header-left>div:nth-child(2) {
   line-height: 40px;
@@ -86,6 +95,7 @@ const show = computed(() => userStore.hasUnassignedTokens);
   font-size: 32px;
   font-weight: 800;
 }
+
 #prompt-header-left>div:nth-child(3) {
   line-height: 40px;
   font-size: 24px;
@@ -113,7 +123,7 @@ const show = computed(() => userStore.hasUnassignedTokens);
 
 
 #prompt-header.connected {
-  height: 325px;
+  height: 400px;
 }
 
 #prompt-header-order-button {

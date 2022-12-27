@@ -24,7 +24,7 @@ const handleConnectClick = async () => {
 <style scoped>
 #connect-container {
   position: absolute;
-  right: 5%;
+  right: 10%;
   top: 5%;
   z-index: 500;
 }
