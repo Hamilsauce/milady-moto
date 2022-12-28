@@ -1,12 +1,16 @@
 <script setup lang="ts">
-defineProps({
-  imageContent: Array
+const props = defineProps({
+  imageContent: Array,
+  fullImageSrc: String,
 })
+
+const { fullImageSrc } = props
 </script>
 
 <template>
-  <div class="content-row">
-    <i>
+  <!-- :style="{ 'background-image': 'url(' + testSrc + ')' }"></div> -->
+  <div class="content-row" :style="{ 'background-image': 'url(' + fullImageSrc + ')' }">
+    <!-- <i>
       <slot name="icon"></slot>
     </i>
     <div class="details">
@@ -14,12 +18,12 @@ defineProps({
         <slot name="heading"></slot>
       </h3>
       <slot></slot>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <style scoped>
-.row {
+.content-row {
   margin-top: 2rem;
   display: flex;
   cursor: pointer;
@@ -29,9 +33,10 @@ defineProps({
   font-size: 16px;
   padding: 0;
   width: 100%;
-  height: 1000px !important;
+  height: 500px;
+  /* height: 1000px !important; */
 }
-
+/*
 .heading:hover {
   color: hsla(160, 100%, 37%, 1);
 }
@@ -96,5 +101,5 @@ h3 {
 
 .row:last-of-type:after {
   display: none;
-}
+} */
 </style>

@@ -31,7 +31,8 @@ button {
   overflow: hidden;
   color: white;
   font-size: 20px;
-
+overflow: hidden;
+overflow-y: auto;
 }
 
 a {

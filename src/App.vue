@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from "vue-router";
 import ConnectButton from "@/components/ConnectButton.vue";
+import ContentRow from "@/components/ContentRow.vue";
 import GotoOrderViewPrompt from "@/components/GotoOrderViewPrompt.vue";
 import GalleryGrid from "@/components/GalleryGrid.vue";
 import { computed } from "vue";
@@ -21,6 +22,9 @@ const handleFormButtonClick = async (e: Event): Promise<void> => {
   router.push(('/vip'));
 };
 
+const fullImages = new Array(10).fill(null)
+  .map((_, i) => `src/assets/content-rows/full-rows/content-row-${ i + 2 }-all.jpg`)
+
 </script>
 
 <template>
@@ -28,7 +32,8 @@ const handleFormButtonClick = async (e: Event): Promise<void> => {
     <ConnectButton />
     <GotoOrderViewPrompt />
     <main id="app-body">
-      <div class="container" data-row="0">
+
+      <section class="container" data-row="0">
         <div class="text-content">
           <div>mi777: the MiladyMoto Jersey</div>
           <div>a Physi-Digi Love Letter to Milady</div>
@@ -37,25 +42,29 @@ const handleFormButtonClick = async (e: Event): Promise<void> => {
           ar-modes="webxr scene-viewer quick-look" camera-controls="" environment-image="neutral" shadow-intensity="0"
           autoplay="" ar-status="not-presenting">
         </model-viewer>
-      </div>
+      </section>
+      <section class="container" data-row="1">
+        <GalleryGrid />
+      </section>
+      <!-- <section class="container" data-row="1"> -->
+      <!-- </section> -->
+      <ContentRow v-for="(image,index) in fullImages" :full-image-src="image" />
 
-      <GalleryGrid />
-      <div class="container">
+<!--
+      <section class="container" data-row="2">
+        <div class="content-row-background"></div>
+      </section>
+      <section class="container" data-row="3">
+        <div class="content-row-background"></div>
+      </section>
+      <section class="container" data-row="rest">
+        <div id="mega-imaged"></div>
+        <img id="mega-image" src="./assets/content-rows/content-rows-3-to-12.jpg" alt="" srcset="">
+      </section> -->
+      <!-- <section class="container">
         <iframe src="https://hamilsauce.github.io/playground/simple-pixel-editor/" width="430" height="800"
           frameborder="0"></iframe>
-      </div>
-      <div class="container">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
-        quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
-        quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
-        quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
-        quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
-        quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
-      </div>
+      </section> -->
       <!-- <div class="container">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea suscipit maiores, veniam sequi minus non quibusdam
         quasi laborum fuga iure alias velit laboriosam tenetur similique odio inventore ratione commodi facilis.
@@ -98,26 +107,29 @@ const handleFormButtonClick = async (e: Event): Promise<void> => {
 
 <style scoped>
 #app-body {
-  position: relative;
+  /* position: relative; */
   top: 0;
   left: 0;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   z-index: 5;
-  height: 100%;
+  height: auto;
   overflow: scroll;
+overflow-y: auto;
+  /* min-height: 100%; */
 }
 
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
+  gap: 40px;
   height: 100%;
-  gap: 32px;
-  min-height: 100vh;
-  padding: 0 200px;
+  min-height: 100%;
+  padding: 32px 200px;
 }
 
 .text-content {
@@ -127,18 +139,69 @@ const handleFormButtonClick = async (e: Event): Promise<void> => {
 }
 
 .container[data-row="0"] {
-  background-image: url('./assets/content-rows/0/0_0.jpg');
+  background-image: url('./assets/content-rows/0_0.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   height: 100%;
 }
-.container[data-row="0"] .text-content > div:nth-child(1){
+
+
+.container[data-row="0"] .text-content>div:nth-child(1) {
   font-weight: 600;
   font-size: 40px;
 }
 
+.container[data-row="1"] {
+  /* position: absolute;
+  top: 820px;
+  left: 17%; */
+  height: 200p;
+  height: 60%;
+  min-height: 60%;
+
+}
+
+.container[data-row="2"] .content-row-background {
+  background-image: url('./assets/content-rows/content-row-2-all.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  min-height: fit-content;
+  width: 100%;
+}
+
+.container[data-row="3"] .content-row-background {
+  background-image: url('./assets/content-rows/content-row-3-all.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  min-height: fit-content;
+  width: 100%;
+}
+
+.container[data-row="rest"] {
+  background-image: url('./assets/content-rows/content-rows-3-to-12.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  height: 1000px;
+  width: 100%;
+}
+
+#mega-image {
+  height: 100%;
+  width: 80%;
+  background-image: url('./assets/content-rows/content-rows-3-to-12.jpg');
+  background-image: url('./assets/content-rows/content-rows-3-to-12.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  min-height: 100%;
+  width: 100%;
+}
+
 #mi777-model-viewer {
   width: 80%;
-  height: 80%;
+  height: 550px;
 }
 </style>

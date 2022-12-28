@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import GalleryImage from "@/components/GalleryImage.vue";
-import { contentRows } from '@/data/old-content-row-config.js'
+import { contentRows } from '@/data/content-row-config.js'
 import { ref } from 'vue';
 
-const galleryImages = contentRows['100']
+const galleryImages = contentRows['1']
 const galleryImagesRef = ref(contentRows['100'])
 const galleryImagesValues = ref(contentRows['100']).value
 console.log({ galleryImages });
@@ -22,14 +22,15 @@ console.log({ galleryImages });
 <style scoped>
 #gallery {
   position: absolute;
-  top: 870px;
-  left: 20.5%;
+  top: 0;
+  left: 17%;
+  transform: translate(0, -200px);
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(2, 1fr);
   padding: 8px;
-  width: 60%;
-  height: 600px;
+  width: 70%;
+  height: 700px;
   gap: 8px;
   z-index: 400;
   /* border: 2px solid #591db2; */

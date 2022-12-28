@@ -1,20 +1,27 @@
 <script setup lang="ts">
 import { useUserStore } from "@/stores/user.store";
-import { computed } from "vue";
+import { computed, ref } from "vue";
 
 const userStore = useUserStore();
 
 const connectButtonContent = computed(() => userStore.isConnected ? (userStore.user.wallet?.slice(0, 3) + '...' + userStore.user.wallet?.slice(-4, -1)).toLowerCase() : 'Connect');
+const userClosed = ref(false);
 
 const handleConnectClick = async () => {
   userStore.connect();
 };
-const show = computed(() => userStore.hasUnassignedTokens);
+const handleCloseClick = async () => {
+
+};
+const show = computed(() => userStore.hasUnassignedTokens && !userClosed.value);
 
 </script>
 
 <template>
   <header id="prompt-header" :class="{ connected: show }">
+    <div id="prompt-header-close">
+      <button @click="userClosed = true" id="close-prompt">X</button>
+    </div>
     <div id="prompt-header-left">
       <div class="prompt-row">
         <div>✅ Great job! You minted {{ userStore.balance }} mi777 Jersey Tokens.</div>
@@ -35,12 +42,14 @@ const show = computed(() => userStore.hasUnassignedTokens);
     <div id="prompt-header-right">
       <button id="prompt-header-order-button">Place my Jersey Orders!</button>
     </div>
+
   </header>
+
 </template>
 
 <style scoped>
 #prompt-header {
-  position: sticky;
+  position: relative;
   top: 0;
   left: 0;
   display: flex;
@@ -62,6 +71,26 @@ const show = computed(() => userStore.hasUnassignedTokens);
   letter-spacing: -1.25px;
   font-size: 20px;
 }
+
+#prompt-header-close {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  z-index: 500;
+}
+
+#close-prompt {
+  width: 100%;
+  height: 100%;
+  background-color: var(--order-prompt-purple);
+  color: var(--app-white);
+  background-color: transparent;
+  border: none;
+  color: var(--order-prompt-purple);
+  font-weight: 1000;
+  font-size: 32px;
+}
+
 
 #prompt-header-left {
   display: flex;
