@@ -24,7 +24,7 @@ console.log({ galleryImages });
   position: absolute;
   top: 0;
   left: 17%;
-  transform: translate(0, -200px);
+  transform: translate(0, -120px);
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(2, 1fr);

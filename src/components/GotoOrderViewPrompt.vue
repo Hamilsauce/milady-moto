@@ -1,17 +1,19 @@
 <script setup lang="ts">
 import { useUserStore } from "@/stores/user.store";
 import { computed, ref } from "vue";
+import router from "@/router";
 
 const userStore = useUserStore();
 
 const connectButtonContent = computed(() => userStore.isConnected ? (userStore.user.wallet?.slice(0, 3) + '...' + userStore.user.wallet?.slice(-4, -1)).toLowerCase() : 'Connect');
 const userClosed = ref(false);
 
-const handleConnectClick = async () => {
-  userStore.connect();
+const handleOrderButtonClick = async () => {
+  router.push('vip');
+  setUserClosed(true);
 };
-const handleCloseClick = async () => {
-
+const setUserClosed = (state?: boolean) => {
+  userClosed.value = state ? state : !userClosed.value
 };
 const show = computed(() => userStore.hasUnassignedTokens && !userClosed.value);
 
@@ -20,7 +22,7 @@ const show = computed(() => userStore.hasUnassignedTokens && !userClosed.value);
 <template>
   <header id="prompt-header" :class="{ connected: show }">
     <div id="prompt-header-close">
-      <button @click="userClosed = true" id="close-prompt">X</button>
+      <button @click="setUserClosed(true)" id="close-prompt">X</button>
     </div>
     <div id="prompt-header-left">
       <div class="prompt-row">
@@ -36,11 +38,9 @@ const show = computed(() => userStore.hasUnassignedTokens && !userClosed.value);
         <div class="text--purple">Select your Sizes + Enter your Shipping Destinations</div>
         <div class="text--purple">w/ the mi777 privacy-enabled shipping experience.!</div>
       </div>
-      <!-- <div class="text--purple">Select your Sizes + Enter your Shipping Destinations w/ the mi777 privacy-enabled -->
-      <!-- shipping experience.</div> -->
     </div>
     <div id="prompt-header-right">
-      <button id="prompt-header-order-button">Place my Jersey Orders!</button>
+      <button @click="handleOrderButtonClick" id="prompt-header-order-button">Place my Jersey Orders!</button>
     </div>
 
   </header>

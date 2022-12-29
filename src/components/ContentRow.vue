@@ -1,16 +1,24 @@
 <script setup lang="ts">
 const props = defineProps({
   imageContent: Array,
-  fullImageSrc: String,
+  content: Object,
+  rowNumber: Number,
+  isImageRow: Boolean,
 })
 
-const { fullImageSrc } = props
+const { content, rowNumber } = props
 </script>
 
 <template>
   <!-- :style="{ 'background-image': 'url(' + testSrc + ')' }"></div> -->
-  <div class="content-row" :style="{ 'background-image': 'url(' + fullImageSrc + ')' }">
-    <!-- <i>
+  <div class="content-row">
+    <div class="content-row-background"
+      :style="{ 'background-image': `url('src/assets/content-rows/full-rows/content-row-${ rowNumber }-all.jpg')` }">
+    </div>
+  </div>
+
+
+  <!-- <i>
       <slot name="icon"></slot>
     </i>
     <div class="details">
@@ -19,23 +27,34 @@ const { fullImageSrc } = props
       </h3>
       <slot></slot>
     </div> -->
-  </div>
 </template>
 
 <style scoped>
 .content-row {
-  margin-top: 2rem;
   display: flex;
-  cursor: pointer;
-  box-shadow: 0 0 10px 1px rgb(36, 63, 8);
-  backdrop-filter: brightness(50%);
-  margin-bottom: 8px;
-  font-size: 16px;
-  padding: 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  height: 500px;
-  /* height: 1000px !important; */
+  height: 100%;
+  gap: 16px;
+  min-height: 100vh;
+  padding: 0 200px;
+  background-color: brown;
+  border: 1px solid black;
+  z-index: 0;
 }
+
+.content-row-background {
+  /* background-image: url('src/assets/content-rows/full-rows/content-row-6-all.jpg'); */
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  height: 100%;
+  min-height: fit-content;
+  width: 100%;
+}
+
 /*
 .heading:hover {
   color: hsla(160, 100%, 37%, 1);

@@ -2,7 +2,19 @@
 import { useUserStore } from '@/stores/user.store';
 import { firestore } from '@/firestore/firestore';
 import { ref } from 'vue';
+import { type UserModel, JerseySize, type Order, type OrderStatus, type ShippingAddress, } from '@/models/user.model';
 
+
+
+const jerseySizes: string[] = [
+  'XSmall',
+  'Small',
+  'Medium',
+  'Large',
+  'XLarge',
+  'XXLarge',
+  'XXXLarge',
+]
 const { collection, doc, setDoc, addDoc } = firestore;
 
 const data = ref({
@@ -12,6 +24,7 @@ const data = ref({
   state: '',
   zip: '',
   country: '',
+  jerseySize: jerseySizes[JerseySize.Large]
 });
 
 const userStore = useUserStore()
@@ -28,6 +41,7 @@ const handleSubmit = () => {
     state: '',
     zip: '',
     country: '',
+    jerseySize: JerseySize.Large
   });
 }
 
@@ -63,6 +77,12 @@ const handleSubmit = () => {
           <input v-model="data.country" type="text" name="shipping-country" id="shipping-country" />
         </div>
         <div class="form-group">
+          <label for="jersey-size">Size</label>
+          <select v-model="data.jerseySize" name="jersey-size" id="jersey-size">
+            <option v-for="(size, index) in jerseySizes" :value="size">{{ size }}</option>
+          </select>
+        </div>
+        <div class="form-group">
           <input @click="handleSubmit" type="button" name="shipping-submit" id="shipping-submit" value="Submit" />
         </div>
 
@@ -76,9 +96,12 @@ const handleSubmit = () => {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  align-items: center;
   gap: 16px;
   width: 100%;
   /* height: 100%; */
+  color: var(--order-prompt-purple);
+  font-size: 24px;
 }
 
 .shipping-form {
@@ -96,23 +119,27 @@ const handleSubmit = () => {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  gap: 32px;
   width: 100%;
 }
 
-.form-group input {
+.form-group input,
+select {
   font-size: 18px;
   padding: 8px;
   border-radius: 6px;
 }
 
 .form-group input[type=button] {
-  background-color: rgb(57, 57, 57);
-  color: rgb(46, 185, 102);
+  background-color: var(--order-prompt-purple);
+  color: #ffffff;
+  font-weight: 600;
   cursor: pointer;
 }
 
 .form-group label {
-  font-size: 18px;
+  font-size: 24px;
+  font-weight: 600;
 }
 
 /* @media (min-width: 1024px) {
