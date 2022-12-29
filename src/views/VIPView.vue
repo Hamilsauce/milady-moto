@@ -2,11 +2,11 @@
 import { useUserStore } from '@/stores/user.store';
 import { firestore } from '@/firestore/firestore';
 import { ref } from 'vue';
-import { type UserModel, JerseySize, type Order, type OrderStatus, type ShippingAddress, } from '@/models/user.model';
+import { type UserModel, type JerseySizeType, JerseySize, type Order, type OrderStatus, type ShippingAddress, } from '@/models/user.model';
 
 
 
-const jerseySizes: string[] = [
+const jerseySizes: JerseySizeType[] = [
   'XSmall',
   'Small',
   'Medium',
@@ -17,32 +17,31 @@ const jerseySizes: string[] = [
 ]
 const { collection, doc, setDoc, addDoc } = firestore;
 
-const data = ref({
-  name: '',
-  address1: '',
-  city: '',
-  state: '',
-  zip: '',
-  country: '',
+const order = ref({
+  shippingAddress: {
+    name: '',
+    address1: '',
+    city: '',
+    stateProvince: '',
+    postalCode: '',
+    country: ''
+  },
   jerseySize: jerseySizes[JerseySize.Large]
 });
 
 const userStore = useUserStore()
 
 const handleSubmit = () => {
-  console.log('HANDLE SUBMIT');
+  console.log('HANDLE SUBMIT', order.value);
 
-  addDoc(collection('tester1'), data.value);
+  // addDoc(collection('tester1'), order.value);
 
-  Object.assign(data.value, {
-    name: '',
-    address1: '',
-    city: '',
-    state: '',
-    zip: '',
-    country: '',
-    jerseySize: JerseySize.Large
-  });
+
+  userStore.addOrder({
+    jerseySize: order.value.jerseySize,
+    shippingAddress: order.value.shippingAddress,
+    status: 'SHIPPING_ASSIGNED',
+  })
 }
 
 </script>
@@ -53,32 +52,34 @@ const handleSubmit = () => {
     <div v-for="token in userStore.user.mi777Balance" class="shipping-form-container">
       <form class="shipping-form">
         <div class="form-group">
-          <label for="shipping-name">Name</label>
-          <input v-model="data.name" type="text" name="shipping-name" id="shipping-name" />
+          <label for="shipping-name">Real/Fake Name</label>
+          <input v-model="order.shippingAddress.name" type="text" name="shipping-name" id="shipping-name" />
         </div>
         <div class="form-group">
           <label for="shipping-street-address1">Address1</label>
-          <input v-model="data.address1" type="text" name="shipping-street-address1" id="shipping-street-address1" />
+          <input v-model="order.shippingAddress.address1" type="text" name="shipping-street-address1"
+            id="shipping-street-address1" />
         </div>
         <div class="form-group">
           <label for="shipping-city">City</label>
-          <input v-model="data.city" type="text" name="shipping-city" id="shipping-city" />
+          <input v-model="order.shippingAddress.city" type="text" name="shipping-city" id="shipping-city" />
         </div>
         <div class="form-group">
-          <label for="shipping-state">State</label>
-          <input v-model="data.state" type="text" name="shipping-state" id="shipping-state" />
+          <label for="shipping-state">State/Province</label>
+          <input v-model="order.shippingAddress.stateProvince" type="text" name="shipping-state" id="shipping-state" />
         </div>
         <div class="form-group">
-          <label for="shipping-zip">Zip</label>
-          <input v-model="data.zip" type="text" name="shipping-zip" id="shipping-zip" />
+          <label for="shipping-postalCode">postalCode</label>
+          <input v-model="order.shippingAddress.postalCode" type="text" name="shipping-postalCode"
+            id="shipping-postalCode" />
         </div>
         <div class="form-group">
           <label for="shipping-country">Country</label>
-          <input v-model="data.country" type="text" name="shipping-country" id="shipping-country" />
+          <input v-model="order.shippingAddress.country" type="text" name="shipping-country" id="shipping-country" />
         </div>
         <div class="form-group">
           <label for="jersey-size">Size</label>
-          <select v-model="data.jerseySize" name="jersey-size" id="jersey-size">
+          <select v-model="order.jerseySize" name="jersey-size" id="jersey-size">
             <option v-for="(size, index) in jerseySizes" :value="size">{{ size }}</option>
           </select>
         </div>

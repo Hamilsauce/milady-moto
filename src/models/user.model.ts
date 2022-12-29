@@ -8,6 +8,14 @@ export enum JerseySize {
   XXLarge,
   XXXLarge
 }
+export type JerseySizeType =
+  'XSmall' |
+  'Small' |
+  'Medium' |
+  'Large' |
+  'XLarge' |
+  'XXLarge' |
+  'XXXLarge'
 
 export interface ShippingAddress {
   name: string;
@@ -22,7 +30,7 @@ export interface ShippingAddress {
 export type OrderStatus = 'MINTED' | 'SHIPPING_ASSIGNED' | 'FULFILLED' | 'CLOSED';
 
 export interface Order {
-  jerseySize: JerseySize;
+  jerseySize: JerseySizeType;
   shippingAddress: ShippingAddress;
   status: OrderStatus;
 }

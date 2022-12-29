@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from "vue-router";
 import ConnectButton from "@/components/ConnectButton.vue";
+// import Confetti from "@/components/Confetti.vue";
 import ContentRow from "@/components/ContentRow.vue";
 import GotoOrderViewPrompt from "@/components/GotoOrderViewPrompt.vue";
 import GalleryGrid from "@/components/GalleryGrid.vue";
@@ -8,9 +9,11 @@ import { computed } from "vue";
 import router from "@/router";
 import { useUserStore } from "@/stores/user.store";
 import { contentRows } from '@/data/content-row-config'
+
 const rowIndexes = [
   2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
 ]
+
 const userStore = useUserStore();
 console.log(contentRows)
 
@@ -37,6 +40,7 @@ const handleFormButtonClick = async (e: Event): Promise<void> => {
 
   </main>
   <!-- </div> -->
+  <!-- <Confetti /> -->
 </template>
 
 <style scoped>

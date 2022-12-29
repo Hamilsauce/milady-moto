@@ -2,7 +2,7 @@ import { computed, reactive } from "vue";
 import { defineStore } from "pinia";
 import type { Order, UserModel } from "@/models/user.model";
 import Web3 from 'web3';
-import { getUser } from "@/firestore/db";
+import { getUser, updateUser } from "@/firestore/db";
 
 const GCF_LOCAL_URL = 'http://localhost:5000/my-lady-8b48f/us-central1/getMiladyBalance';
 const GCF_URL = 'https://us-central1-my-lady-8b48f.cloudfunctions.net/getMiladyBalance';
@@ -92,7 +92,15 @@ export const useUserStore = defineStore("user", () => {
     // await fetchMI777Balance(userState.wallet);
   }
 
-  const addOrder = async (wallet: string, order: Order) => { }
+  const addOrder = async ( order: Order) => {
+    const res = await updateUser(user.value.wallet || '', {
+      ...user.value,
+      orders: [
+        ...user.value.orders,
+        order
+      ]
+    })
+  }
 
   const fetchMI777Balance = async (wallet?: string) => {
     if (!(isConnected && wallet)) return console.error('USER NOT CONNECTED, CANT GET BALANCE');
@@ -118,6 +126,7 @@ export const useUserStore = defineStore("user", () => {
     isConnected,
     hasUnassignedTokens,
     hasBalance,
+    addOrder,
     init,
     connect,
   };
