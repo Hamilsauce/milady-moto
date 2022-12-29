@@ -37,6 +37,7 @@ export const useUserStore = defineStore("user", () => {
 
   const hasBalance = computed(() => balance.value > 0);
   const hasUnassignedTokens = computed(() => hasBalance.value && userState.orders.length !== balance.value);
+  const unassignedTokenCount = computed(() => balance.value - userState.orders.length);
   const isConnected = computed(() => !!userState.wallet);
 
   const init = async () => {
@@ -92,7 +93,7 @@ export const useUserStore = defineStore("user", () => {
     // await fetchMI777Balance(userState.wallet);
   }
 
-  const addOrder = async ( order: Order) => {
+  const addOrder = async (order: Order) => {
     const res = await updateUser(user.value.wallet || '', {
       ...user.value,
       orders: [
@@ -126,6 +127,7 @@ export const useUserStore = defineStore("user", () => {
     isConnected,
     hasUnassignedTokens,
     hasBalance,
+    unassignedTokenCount,
     addOrder,
     init,
     connect,
