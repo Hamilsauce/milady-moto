@@ -68,7 +68,7 @@ const handleSubmit = () => {
     </div>
     <div v-else class="shipping-form-view">
       <h1>Have jersey</h1>
-      <div v-for="token in userStore.user.mi777Balance" class="shipping-form-container">
+      <div v-for="token in userStore.unassignedTokenCount" class="shipping-form-container">
         <form class="shipping-form">
           <div class="form-group">
             <label for="shipping-name">Real/Fake Name</label>
