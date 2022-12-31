@@ -32,12 +32,13 @@ const handleConnectClick = async () => {
 #connect-button {
   width: 100%;
   height: 100%;
-  padding: 12px 24px;
+  padding: 12px 32px;
   border: none;
   border-radius: 32px;
-  background-color: rgb(236, 221, 21);
+  background-color: var(--gargoyle-gas);
   font-weight: 600;
-  font-size: 18px;
+  font-size: 20px;
+  font-family: var(--font-family-ibm_plex_mono);
   z-index: 501;
 }
 

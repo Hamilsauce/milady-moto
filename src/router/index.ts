@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
+import HomeView from "@/views/HomeView.vue";
+import HomeView2 from "@/views/HomeView2.vue";
+import { macBookPro16FrontEndCONNECTEDWithOpData, macBookPro16FrontEndData, galleryOverlayData } from "@/data/home-view-data";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -13,6 +15,11 @@ const router = createRouter({
       path: "/vip",
       name: "vip",
       component: () => import("../views/VIPView.vue"),
+    },
+    {
+      path: "/home2",
+      component: HomeView2,
+      props: { ...macBookPro16FrontEndData },
     },
   ],
 });
