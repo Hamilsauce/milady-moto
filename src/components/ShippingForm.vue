@@ -4,6 +4,10 @@ import { firestore } from '@/firestore/firestore';
 import { ref } from 'vue';
 import { type UserModel, type JerseySizeType, JerseySize, type Order, type OrderStatus, type ShippingAddress, } from '@/models/user.model';
 
+const props = defineProps({
+  order: Object
+})
+
 const userSubmitted = ref(false)
 
 const jerseySizes: JerseySizeType[] = [
@@ -15,107 +19,102 @@ const jerseySizes: JerseySizeType[] = [
   'XXLarge',
   'XXXLarge',
 ]
-const { collection, doc, setDoc, addDoc } = firestore;
 
-const order = ref({
-  shippingAddress: {
-    name: '',
-    address1: '',
-    city: '',
-    stateProvince: '',
-    postalCode: '',
-    country: ''
-  },
-  jerseySize: jerseySizes[JerseySize.Large]
+const shippingAddress = ref(props.order?.shippingAddress ? { ...props.order.shippingAddress } : {
+  name: '',
+  address1: '',
+  city: '',
+  stateProvince: '',
+  postalCode: '',
+  country: ''
 });
 
+const jerseySize = ref(props.order?.jerseySize ? props.order?.jerseySize :
+  jerseySizes[JerseySize.Large]
+);
+
+const validateData = (order: Order): boolean => {
+  return Object.values(order.shippingAddress || {}).every(_ => !!_);
+}
 const userStore = useUserStore()
 
 const handleSubmit = () => {
-  console.log('HANDLE SUBMIT', order.value);
+  const order: Order = {
+    ...props.order as Order,
+    jerseySize,
+    shippingAddress,
+  }
+  if (validateData(shippingAddress.value)) {
+    userStore.updateOrder(props.order?.id, {
+      jerseySize: jerseySize.value,
+      shippingAddress: shippingAddress.value,
+      status: 'SHIPPING_ASSIGNED',
+    })
+  }
 
-  // addDoc(collection('tester1'), order.value);
-
-
-  userStore.addOrder({
-    jerseySize: order.value.jerseySize,
-    shippingAddress: order.value.shippingAddress,
-    status: 'SHIPPING_ASSIGNED',
-  })
-
-
-  Object.assign(order.value, {
-    shippingAddress: {
-      name: '',
-      address1: '',
-      city: '',
-      stateProvince: '',
-      postalCode: '',
-      country: ''
-    },
-    jerseySize: jerseySizes[JerseySize.Large]
-  })
   userSubmitted.value = true;
 }
 
 </script>
 
 <template>
-  <section id="vip-view">
-    <div v-if="userSubmitted" id="pixel-editor-container">
-      <iframe src="https://hamilsauce.github.io/playground/simple-pixel-editor/" width="430" height="800"
-        frameborder="0"></iframe>
-    </div>
-    <div v-else class="shipping-form-view">
-      <h1>Have jersey</h1>
-      <div v-for="token in userStore.unassignedTokenCount" class="shipping-form-container">
-        <form class="shipping-form">
-          <div class="form-group">
-            <label for="shipping-name">Real/Fake Name</label>
-            <input v-model="order.shippingAddress.name" type="text" name="shipping-name" id="shipping-name" />
-          </div>
-          <div class="form-group">
-            <label for="shipping-street-address1">Address1</label>
-            <input v-model="order.shippingAddress.address1" type="text" name="shipping-street-address1"
-              id="shipping-street-address1" />
-          </div>
-          <div class="form-group">
-            <label for="shipping-city">City</label>
-            <input v-model="order.shippingAddress.city" type="text" name="shipping-city" id="shipping-city" />
-          </div>
-          <div class="form-group">
-            <label for="shipping-state">State/Province</label>
-            <input v-model="order.shippingAddress.stateProvince" type="text" name="shipping-state"
-              id="shipping-state" />
-          </div>
-          <div class="form-group">
-            <label for="shipping-postalCode">postalCode</label>
-            <input v-model="order.shippingAddress.postalCode" type="text" name="shipping-postalCode"
-              id="shipping-postalCode" />
-          </div>
-          <div class="form-group">
-            <label for="shipping-country">Country</label>
-            <input v-model="order.shippingAddress.country" type="text" name="shipping-country" id="shipping-country" />
-          </div>
-          <div class="form-group">
-            <label for="jersey-size">Size</label>
-            <select v-model="order.jerseySize" name="jersey-size" id="jersey-size">
-              <option v-for="(size, index) in jerseySizes" :value="size">{{ size }}</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <input @click="handleSubmit" type="button" name="shipping-submit" id="shipping-submit" value="Submit" />
-          </div>
-
-        </form>
+  <div class="shipping-form-view">
+    <h1>Order #{{ props.order?.id }}</h1>
+    <form class="shipping-form">
+      <div class="form-group">
+        <label for="shipping-name">Real/Fake Name</label>
+        <input :disabled="userSubmitted" v-model="shippingAddress.name" type="text" name="shipping-name"
+          id="shipping-name" />
       </div>
-    </div>
-  </section>
+      <div class="form-group">
+        <label for="shipping-street-address1">Address1</label>
+        <input :disabled="userSubmitted" v-model="shippingAddress.address1" type="text" name="shipping-street-address1"
+          id="shipping-street-address1" />
+      </div>
+      <div class="form-group">
+        <label for="shipping-city">City</label>
+        <input :disabled="userSubmitted" v-model="shippingAddress.city" type="text" name="shipping-city"
+          id="shipping-city" />
+      </div>
+      <div class="form-group">
+        <label for="shipping-state">State/Province</label>
+        <input :disabled="userSubmitted" v-model="shippingAddress.stateProvince" type="text" name="shipping-state"
+          id="shipping-state" />
+      </div>
+      <div class="form-group">
+        <label for="shipping-postalCode">postalCode</label>
+        <input :disabled="userSubmitted" v-model="shippingAddress.postalCode" type="text" name="shipping-postalCode"
+          id="shipping-postalCode" />
+      </div>
+      <div class="form-group">
+        <label for="shipping-country">Country</label>
+        <input :disabled="userSubmitted" v-model="shippingAddress.country" type="text" name="shipping-country"
+          id="shipping-country" />
+      </div>
+      <div class="form-group">
+        <label for="jersey-size">Size</label>
+        <select :disabled="userSubmitted" v-model="jerseySize" name="jersey-size" id="jersey-size">
+          <option v-for="(size, index) in jerseySizes" :value="size">{{ size }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <input :disabled="userSubmitted" @click="handleSubmit" type="button" name="shipping-submit" id="shipping-submit"
+          value="Submit" />
+      </div>
 
+    </form>
+  </div>
 </template>
 
 <style>
-.shipping-form-view {
+.shipping-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  gap: 16px;
+  padding: 16px;
+  /* height: 100%; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -125,16 +124,6 @@ const handleSubmit = () => {
   /* height: 100%; */
   color: var(--order-prompt-purple);
   font-size: 24px;
-}
-
-.shipping-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  gap: 16px;
-  padding: 16px;
-  /* height: 100%; */
 }
 
 .form-group {

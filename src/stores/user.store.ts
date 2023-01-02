@@ -2,7 +2,8 @@ import { computed, reactive } from "vue";
 import { defineStore } from "pinia";
 import type { Order, UserModel } from "@/models/user.model";
 import Web3 from 'web3';
-import { getUser, updateUser } from "@/firestore/db";
+import { getUser, saveUser, updateUser, userExists } from "@/firestore/db";
+import { useRoute } from "vue-router";
 
 const GCF_LOCAL_URL = 'http://localhost:5000/my-lady-8b48f/us-central1/getMiladyBalance';
 const GCF_URL = 'https://us-central1-my-lady-8b48f.cloudfunctions.net/getMiladyBalance';
@@ -38,6 +39,7 @@ export const useUserStore = defineStore("user", () => {
   const hasBalance = computed(() => balance.value > 0);
   const hasUnassignedTokens = computed(() => hasBalance.value && userState.orders.length !== balance.value);
   const unassignedTokenCount = computed(() => balance.value - userState.orders.length);
+  const unassignedOrders = computed(() => orders.value.filter(order => order.status === 'SHIPPING_UNASSIGNED'));
   const isConnected = computed(() => !!userState.wallet);
 
   const init = async () => {
@@ -46,7 +48,7 @@ export const useUserStore = defineStore("user", () => {
     if (wallet) {
       const mi777Balance = await fetchMI777Balance(wallet);
 
-      Object.assign(userState, await getUser(wallet, {
+      Object.assign(userState, await saveUser(wallet, {
         wallet,
         mi777Balance,
       }));
@@ -56,41 +58,18 @@ export const useUserStore = defineStore("user", () => {
   const connect = async () => {
     const web3 = new Web3(Web3.givenProvider)
 
-    const wallet = (await web3.eth.requestAccounts())[0];
+    let wallet = (await web3.eth.getAccounts())[0] || (await web3.eth.requestAccounts())[0]
+
     const mi777Balance = await fetchMI777Balance(wallet);
 
-    // const userDoc = await getDoc(doc(`users/${ wallet }`));
-    // console.warn({ userDoc });
-    // console.log('user exists', userDoc.exists());
-    console.log({
-      wallet,
-      mi777Balance,
-    });
+    console.warn({ wallet, mi777Balance, });
 
-
-    Object.assign(userState, await getUser(wallet, {
-      wallet,
-      mi777Balance,
-    }));
-
-
-    // if (userDoc.exists()) {
-    //   /*
-    //         TODO
-    //         Update balance user balance and then Fetch from firestore;
-    //   */
-    // } else {
-    //   /*
-    //         TODO
-    //         Create new user document with wallet info, fetch from firestore.
-    //   */
-    // }
-
-
-    // const userDoc = doc(`users/${ wallet }`);
-    // userDoc.
-    // userState.wallet = (await web3.eth.requestAccounts())[0];
-    // await fetchMI777Balance(userState.wallet);
+    if (await userExists(wallet)) {
+      await fetchUser(wallet, { mi777Balance });
+    }
+    else {
+      await createUser({ wallet, mi777Balance })
+    }
   }
 
   const addOrder = async (order: Order) => {
@@ -98,9 +77,56 @@ export const useUserStore = defineStore("user", () => {
       ...user.value,
       orders: [
         ...user.value.orders,
-        order
+        createOrderRecord(order)
       ]
-    })
+    });
+
+    return res;
+  }
+
+  const updateOrder = async (id: number, updates: Partial<Order>) => {
+    const order = Object.assign(user.value.orders.find(_ => _.id == id) || {}, updates)
+
+    const res = await updateUser(user.value.wallet || '', user.value);
+
+    return res;
+  }
+
+  const fetchUser = async (wallet: string, data: Partial<UserModel>): Promise<null> => {
+    const res = await getUser(wallet, data);
+    Object.assign(userState, res);
+
+    return null;
+  }
+
+  const createUser = async (initialData: Partial<UserModel>): Promise<null> => {
+    if (!initialData.wallet) return null;
+
+    const mi777Balance = initialData.mi777Balance | 0;
+
+    const userObj = {
+      ...initialData,
+      mi777Balance,
+      orders: new Array(mi777Balance).fill(null).map((_, i) => createOrderRecord({ id: i }))
+    }
+
+    const res = await saveUser(user.value.wallet || '', userObj);
+    Object.assign(userState, res);
+
+    return null;
+  }
+
+  const createOrderRecord = (data?: Partial<Order>): Order => {
+    const defaultOrder: Order = {
+      id: -1,
+      jerseySize: null,
+      shippingAddress: null,
+      status: 'SHIPPING_UNASSIGNED',
+    }
+
+    const order = data ? { ...defaultOrder, ...data } : defaultOrder;
+
+    return order;
   }
 
   const fetchMI777Balance = async (wallet?: string) => {
@@ -131,5 +157,7 @@ export const useUserStore = defineStore("user", () => {
     addOrder,
     init,
     connect,
+    unassignedOrders,
+    updateOrder
   };
 });

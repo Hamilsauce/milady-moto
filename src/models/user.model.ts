@@ -27,11 +27,12 @@ export interface ShippingAddress {
   country: string;
 }
 
-export type OrderStatus = 'MINTED' | 'SHIPPING_ASSIGNED' | 'FULFILLED' | 'CLOSED';
+export type OrderStatus = 'SHIPPING_UNASSIGNED' | 'SHIPPING_ASSIGNED' | 'FULFILLED' | 'CLOSED';
 
 export interface Order {
-  jerseySize: JerseySizeType;
-  shippingAddress: ShippingAddress;
+  id: number;
+  jerseySize: JerseySizeType | null;
+  shippingAddress: ShippingAddress | null;
   status: OrderStatus;
 }
 
