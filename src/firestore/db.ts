@@ -61,6 +61,7 @@ export const createOrderRecord = (data?: Partial<Order>): Order => {
 export const updateUser = async (userRefOrWallet: string | DocumentReference<DocumentData>, data: Partial<UserModel> = {}): Promise<UserModel> => {
   const userRef = typeof userRefOrWallet === 'string' ? doc(COLLECTION_NAMES.users, userRefOrWallet) : userRefOrWallet;
   const userData = (await getDoc(userRef)).data() || {}
+  //@ts-ignore
   const updated = { ...userData, ...data }
   await updateDoc(userRef, updated);
 
