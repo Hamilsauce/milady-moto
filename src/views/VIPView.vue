@@ -43,9 +43,9 @@ ShippingForm
       <iframe src="https://hamilsauce.github.io/playground/simple-pixel-editor/" width="430" height="800"
         frameborder="0"></iframe>
     </div>
-    <div v-else class="shipping-form-view">
+    <div v-else class="shipping-forms">
       <h1>Have jersey</h1>
-      <ShippingForm v-for="(order, index) in userStore.unassignedOrders" :order="order" />
+      <ShippingForm v-for="(order, index) in userStore.orders" :order-id="order.id" />
       <!-- <div v-for="token in userStore.unassignedTokenCount" class="shipping-form-container">
         <div v-for="token in userStore.unassignedTokenCount" class="shipping-form-container">
           <form class="shipping-form">
@@ -99,11 +99,25 @@ ShippingForm
 .vip-view {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   gap: 16px;
   width: 100%;
+  height: 100%;
+  padding: 32px;
+  color: var(--order-prompt-purple);
+  font-size: 24px;
+}
+
+.shipping-forms {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  width: 100%;
   /* height: 100%; */
+  padding: 32px;
   color: var(--order-prompt-purple);
   font-size: 24px;
 }

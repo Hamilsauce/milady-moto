@@ -35,11 +35,11 @@ export const useUserStore = defineStore("user", () => {
   const user = computed(() => userState);
   const balance = computed(() => userState.mi777Balance);
   const orders = computed(() => userState.orders);
+  const unassignedOrders = computed(() => orders.value.filter(order => order.status === 'SHIPPING_UNASSIGNED'));
 
   const hasBalance = computed(() => balance.value > 0);
-  const hasUnassignedTokens = computed(() => hasBalance.value && userState.orders.length !== balance.value);
+  const hasUnassignedTokens = computed(() => unassignedOrders.value.length > 0);
   const unassignedTokenCount = computed(() => balance.value - userState.orders.length);
-  const unassignedOrders = computed(() => orders.value.filter(order => order.status === 'SHIPPING_UNASSIGNED'));
   const isConnected = computed(() => !!userState.wallet);
 
   const init = async () => {
@@ -48,8 +48,7 @@ export const useUserStore = defineStore("user", () => {
     if (wallet) {
       const mi777Balance = await fetchMI777Balance(wallet);
 
-      Object.assign(userState, await saveUser(wallet, {
-        wallet,
+      Object.assign(userState, await fetchUser(wallet, {
         mi777Balance,
       }));
     }
@@ -91,6 +90,9 @@ export const useUserStore = defineStore("user", () => {
 
     return res;
   }
+  const getOrder = (id: number): Order => {
+    return user.value.orders.find(_ => _.id == id) || {} as Order
+  }
 
   const fetchUser = async (wallet: string, data: Partial<UserModel>): Promise<null> => {
     const res = await getUser(wallet, data);
@@ -109,8 +111,9 @@ export const useUserStore = defineStore("user", () => {
       mi777Balance,
       orders: new Array(mi777Balance).fill(null).map((_, i) => createOrderRecord({ id: i }))
     }
+    console.log({ userObj });
 
-    const res = await saveUser(user.value.wallet || '', userObj);
+    const res = await saveUser(initialData.wallet || '', userObj);
     Object.assign(userState, res);
 
     return null;
@@ -158,6 +161,7 @@ export const useUserStore = defineStore("user", () => {
     init,
     connect,
     unassignedOrders,
+    getOrder,
     updateOrder
   };
 });

@@ -22,7 +22,7 @@ export const getUser = async (wallet: string, data: Partial<UserModel> = {}): Pr
   }
 
   else {
-    user = await saveUser(wallet, { ...data, orders: [] });
+    user = await saveUser(wallet, data);
   }
 
   return user
@@ -60,8 +60,9 @@ export const createOrderRecord = (data?: Partial<Order>): Order => {
 
 export const updateUser = async (userRefOrWallet: string | DocumentReference<DocumentData>, data: Partial<UserModel> = {}): Promise<UserModel> => {
   const userRef = typeof userRefOrWallet === 'string' ? doc(COLLECTION_NAMES.users, userRefOrWallet) : userRefOrWallet;
-
-  await updateDoc(userRef, data);
+  const userData = (await getDoc(userRef)).data() || {}
+  const updated = { ...userData, ...data }
+  await updateDoc(userRef, updated);
 
   return (await getDoc(userRef)).data() as UserModel;
 }
