@@ -12,6 +12,7 @@ const userStore = useUserStore()
 const order = userStore.getOrder(props.orderId || 0)
 
 const disableForm = ref(order?.status !== 'SHIPPING_UNASSIGNED')
+const showConfirmation = ref(order?.status !== 'SHIPPING_UNASSIGNED')
 
 const jerseySizes: JerseySizeType[] = [
   'XSmall',
@@ -31,6 +32,12 @@ const shippingAddress = ref(order?.shippingAddress ? { ...order.shippingAddress 
   postalCode: '',
   country: ''
 });
+
+const displayStatus = ref(
+  order.status === 'SHIPPING_ASSIGNED' ? 'ORDER PLACED' : order.status === 'FULFILLED' ? 'ORDER SHIPPED' : 'PLACED ORDER'
+);
+
+const collapsed = ref(true);
 
 const jerseySize = ref(order?.jerseySize ? order?.jerseySize :
   jerseySizes[JerseySize.Large]
@@ -57,13 +64,25 @@ const handleSubmit = () => {
   }
 
 }
+const toggleCollapse = () => {
+  collapsed.value = !collapsed.value;
+}
 
 </script>
 
 <template>
   <div class="shipping-form-view">
-    <h1 class="shipping-form-title">Order #{{ order?.id }}</h1>
-    <form class="shipping-form">
+    <h1 @click="toggleCollapse" class="shipping-form-title">Order #{{ order?.id }}</h1>
+    <div v-if="showConfirmation" class="order-confirmation" :class="{ collapsed: collapsed }">
+      <div class="order-status">{{ displayStatus }}</div>
+      <div class="order-addressee">{{ shippingAddress.name }}</div>
+      <div class="order-address1">{{ shippingAddress.address1 }}</div>
+      <div class="order-city">{{ shippingAddress.city }}</div>
+      <div class="order-state">{{ shippingAddress.stateProvince }}</div>
+      <div class="order-postalcode">{{ shippingAddress.postalCode }}</div>
+      <div class="order-country">{{ shippingAddress.country }}</div>
+    </div>
+    <form v-else class="shipping-form">
       <div class="form-group">
         <label for="shipping-name">Real/Fake Name</label>
         <input :disabled="disableForm" v-model="shippingAddress.name" type="text" name="shipping-name"
@@ -85,9 +104,9 @@ const handleSubmit = () => {
           id="shipping-state" />
       </div>
       <div class="form-group">
-        <label for="shipping-postalCode">postalCode</label>
-        <input :disabled="disableForm" v-model="shippingAddress.postalCode" type="text" name="shipping-postalCode"
-          id="shipping-postalCode" />
+        <label for="shipping-postalcode">Postal Code</label>
+        <input :disabled="disableForm" v-model="shippingAddress.postalCode" type="text" name="shipping-postalcode"
+          id="shipping-postalcode" />
       </div>
       <div class="form-group">
         <label for="shipping-country">Country</label>
@@ -129,6 +148,18 @@ const handleSubmit = () => {
   font-size: 24px;
 }
 
+.order-confirmation {
+  height: 100%;
+  overflow: hidden;
+}
+
+.order-confirmation.collapsed,
+.order-confirmation.collapsed * {
+  height: 0%;
+  display: none;
+}
+
+
 .form-group {
   display: flex;
   flex-direction: row;
@@ -156,15 +187,20 @@ select {
   font-size: 24px;
   font-weight: 600;
 }
+
 #submit-button-group {
- justify-content: flex-end;
+  justify-content: flex-end;
 }
+
 .shipping-form-title {
   width: 100%;
   font-size: 24px;
   font-weight: 800;
   text-align: center;
+  cursor: pointer;
+  user-select: none;
 }
+
 /* @media (min-width: 1024px) {
   .shipping-form {
     min-height: 100vh;

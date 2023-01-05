@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { useUserStore } from "@/stores/user.store";
 import Group90 from '@/components/Group90.vue';
+import { ref } from "vue";
 defineProps([
   "xXtgonqzggoeUnsplash1",
   "spanText1",
@@ -209,6 +211,23 @@ defineProps([
   "photo_2022121523241",
   "group90Props",
 ]);
+
+const clickedMint = ref(false);
+const userStore = useUserStore();
+
+const handleMintClick = (e: UIEvent) => {
+  clickedMint.value = true;
+  const popup = open('https://www.scatter.art/collection/0x8fc0d90f2c45a5e7f94904075c952e0943cfccfd?tab=mint', 'Mint your Milady!', 'popup=true');
+
+}
+
+window.addEventListener('focus', e => {
+  console.warn('HEARD THAT FOCUS');
+  if (userStore.isConnected && clickedMint.value === true) {
+    userStore.init()
+    clickedMint.value = false;
+  }
+})
 </script>
 
 <template>
@@ -387,9 +406,9 @@ defineProps([
                 </p>
               </a>
             </div>
-            <a href="scatter.art" target="_blank">
+            <div @click="handleMintClick">
               <img class="x3_0_-mint" :src="x3_0_Mint" alt="3_0_Mint" />
-            </a>
+            </div>
           </div>
           <div class="flex-col-18">
             <div class="group-59-1">
@@ -995,6 +1014,7 @@ defineProps([
   height: 1200px;
   margin-top: 200px;
 }
+
 .macbook-pro-16-frontend {
   align-items: center;
   background-color: var(--white);

@@ -2,20 +2,23 @@
 import { useUserStore } from "@/stores/user.store";
 import { computed, ref } from "vue";
 import router from "@/router";
+import { useRoute } from "vue-router";
 
 const userStore = useUserStore();
-
+const currentRoute = useRoute()
+// currentRouteName.
 const connectButtonContent = computed(() => userStore.isConnected ? (userStore.user.wallet?.slice(0, 3) + '...' + userStore.user.wallet?.slice(-4, -1)).toLowerCase() : 'Connect');
 const userClosed = ref(false);
 
 const handleOrderButtonClick = async () => {
   router.push('vip');
-  setUserClosed(true);
+  // setUserClosed(true);
 };
 const setUserClosed = (state?: boolean) => {
   userClosed.value = state ? state : !userClosed.value
 };
-const show = computed(() => userStore.hasUnassignedTokens && !userClosed.value);
+const userClosedComputed = computed(() => userClosed.value);
+const show = computed(() => !currentRoute.name?.toString().toLowerCase().includes('vip') && userStore.hasUnassignedTokens && userClosed.value !== true);
 
 </script>
 
@@ -27,7 +30,7 @@ const show = computed(() => userStore.hasUnassignedTokens && !userClosed.value);
     <div id="prompt-header-left">
       <div class="prompt-row">
         <div>✅ Great job! You minted {{ userStore.balance }} mi777 Jersey Tokens.</div>
-        <div>🔲 But you've only placed {{ userStore.orders.length }} orders.</div>
+        <div>🔲 But you've only placed {{ userStore.assignedOrders.length }} orders.</div>
 
       </div>
       <div class="prompt-row">

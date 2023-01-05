@@ -18,6 +18,7 @@ export const getUser = async (wallet: string, data: Partial<UserModel> = {}): Pr
   let user = null;
 
   if (userDoc.exists()) {
+
     user = await updateUser(wallet, data);
   }
 
@@ -60,9 +61,21 @@ export const createOrderRecord = (data?: Partial<Order>): Order => {
 
 export const updateUser = async (userRefOrWallet: string | DocumentReference<DocumentData>, data: Partial<UserModel> = {}): Promise<UserModel> => {
   const userRef = typeof userRefOrWallet === 'string' ? doc(COLLECTION_NAMES.users, userRefOrWallet) : userRefOrWallet;
-  const userData = (await getDoc(userRef)).data() || {}
-  //@ts-ignore
-  const updated = { ...userData, ...data }
+  const userData = (await getDoc(userRef)).data() as UserModel;
+  let additionalDefaultOrders: Order[] = []
+
+  if (data && data.mi777Balance && data.mi777Balance - userData?.orders.length > 0) {
+
+    additionalDefaultOrders = new Array(data.mi777Balance - userData?.orders.length).fill(null).map((_, i) => createOrderRecord({
+      id: userData?.orders.length,
+      jerseySize: null,
+      shippingAddress: null,
+      status: 'SHIPPING_UNASSIGNED',
+    }))
+  }
+
+  const updated = { ...userData, ...{ ...data, orders: [...userData?.orders || [], ...additionalDefaultOrders] } }
+  console.log('updateUser',updated);
   await updateDoc(userRef, updated);
 
   return (await getDoc(userRef)).data() as UserModel;

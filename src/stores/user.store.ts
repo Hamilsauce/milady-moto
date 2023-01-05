@@ -35,11 +35,12 @@ export const useUserStore = defineStore("user", () => {
   const user = computed(() => userState);
   const balance = computed(() => userState.mi777Balance);
   const orders = computed(() => userState.orders);
+  const assignedOrders = computed(() => orders.value.filter(order => order.status !== 'SHIPPING_UNASSIGNED'));
   const unassignedOrders = computed(() => orders.value.filter(order => order.status === 'SHIPPING_UNASSIGNED'));
 
   const hasBalance = computed(() => balance.value > 0);
   const hasUnassignedTokens = computed(() => unassignedOrders.value.length > 0);
-  const unassignedTokenCount = computed(() => balance.value - userState.orders.length);
+  const unassignedTokenCount = computed(() => unassignedOrders.value.length);
   const isConnected = computed(() => !!userState.wallet);
 
   const init = async () => {
@@ -48,9 +49,16 @@ export const useUserStore = defineStore("user", () => {
     if (wallet) {
       const mi777Balance = await fetchMI777Balance(wallet);
 
-      Object.assign(userState, await fetchUser(wallet, {
-        mi777Balance,
-      }));
+      // Object.assign(userState, await fetchUser(wallet, {
+      //   mi777Balance,
+      // }));
+
+      if (await userExists(wallet)) {
+        await fetchUser(wallet, { mi777Balance });
+      }
+      else {
+        await createUser({ wallet, mi777Balance })
+      }
     }
   }
 
@@ -157,6 +165,7 @@ export const useUserStore = defineStore("user", () => {
     hasUnassignedTokens,
     hasBalance,
     unassignedTokenCount,
+    assignedOrders,
     addOrder,
     init,
     connect,
