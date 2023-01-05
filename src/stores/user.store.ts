@@ -49,16 +49,9 @@ export const useUserStore = defineStore("user", () => {
     if (wallet) {
       const mi777Balance = await fetchMI777Balance(wallet);
 
-      // Object.assign(userState, await fetchUser(wallet, {
-      //   mi777Balance,
-      // }));
-
-      if (await userExists(wallet)) {
-        await fetchUser(wallet, { mi777Balance });
-      }
-      else {
-        await createUser({ wallet, mi777Balance })
-      }
+      Object.assign(userState, await fetchUser(wallet, {
+        mi777Balance,
+      }));
     }
   }
 

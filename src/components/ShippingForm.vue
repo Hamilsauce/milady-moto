@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useUserStore } from '@/stores/user.store';
 import { firestore } from '@/firestore/firestore';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { type UserModel, type JerseySizeType, JerseySize, type Order, type OrderStatus, type ShippingAddress, } from '@/models/user.model';
 
 const props = defineProps({
@@ -12,7 +12,8 @@ const userStore = useUserStore()
 const order = userStore.getOrder(props.orderId || 0)
 
 const disableForm = ref(order?.status !== 'SHIPPING_UNASSIGNED')
-const showConfirmation = ref(order?.status !== 'SHIPPING_UNASSIGNED')
+// const showConfirmation = ref(order?.status !== 'SHIPPING_UNASSIGNED')
+const showConfirmation = computed(() => order?.status !== 'SHIPPING_UNASSIGNED');
 
 const jerseySizes: JerseySizeType[] = [
   'XSmall',
