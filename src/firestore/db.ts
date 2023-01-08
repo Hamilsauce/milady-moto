@@ -1,75 +1,71 @@
 import type { Order, UserModel } from '@/models/user.model';
 import { firestore } from './firestore';
-import type { DocumentReference, DocumentData } from 'firebase/firestore';
+import { type DocumentReference, type DocumentData, type DocumentSnapshot, onSnapshot, type Unsubscribe, QueryDocumentSnapshot, QuerySnapshot, CollectionReference, query, } from 'firebase/firestore';
 
-const { collection, doc, setDoc, addDoc, getDoc, updateDoc } = firestore;
+const { collection, doc, setDoc, addDoc, getDoc, updateDoc, getDocs } = firestore;
 
 const COLLECTION_NAMES = {
   users: 'users',
-  shippingAddresses: 'shippingAddresses',
+  orders: 'orders',
 }
 
-export const usersCollection = collection(COLLECTION_NAMES.users);
+export const userCollectionRef = collection(COLLECTION_NAMES.users);
 
+export const getOrderCollectionRef = (wallet: string) => collection(COLLECTION_NAMES.users, wallet, 'orders');
 
-export const getUser = async (wallet: string, data: Partial<UserModel> = {}): Promise<UserModel> => {
-  const userDoc = await getDoc(doc(COLLECTION_NAMES.users, wallet));
-  userDoc.ref
-  let user = null;
+export const getUserDocRef = (wallet: string): DocumentReference<DocumentData> => doc(COLLECTION_NAMES.users, wallet)
 
-  if (userDoc.exists()) {
-
-    user = await updateUser(wallet, data);
-  }
-
-  else {
-    user = await saveUser(wallet, data);
-  }
-
-  return user
+export const listenOnUser = (wallet: string, callback: (doc: DocumentSnapshot<DocumentData>) => void): Unsubscribe => {
+  return onSnapshot(getUserDocRef(wallet), callback);
 }
 
-
-export const saveUser = async (userRefOrWallet: string | DocumentReference<DocumentData>, data: Partial<UserModel> = {}): Promise<UserModel> => {
-  const userRef = typeof userRefOrWallet === 'string' ? doc(COLLECTION_NAMES.users, userRefOrWallet) : userRefOrWallet;
-
-  await setDoc(userRef, data, { merge: true });
-
-  return (await getDoc(userRef)).data() as UserModel;
+export const listenOnUserOrders = (wallet: string, callback: (querySnapshot: QuerySnapshot) => void): Unsubscribe => {
+  return onSnapshot(getOrderCollectionRef(wallet), callback);
 }
 
-export const userExists = async (wallet: string,): Promise<boolean> => {
-  const userDoc = await getDoc(doc(COLLECTION_NAMES.users, wallet));
-
-  return userDoc.exists();
+export const getUserDoc = async (ref: DocumentReference): Promise<DocumentSnapshot<unknown>> => {
+  return await getDoc(ref);
 }
 
+export const getOrders = async (wallet: string): Promise<QueryDocumentSnapshot<unknown>[]> => {
+  return (await getDocs(getOrderCollectionRef(wallet))).docs;
+}
 
-export const createOrderRecord = (data?: Partial<Order>): Order => {
+export const addNewOrder = async (wallet: string, { index }: Partial<Order>): Promise<DocumentReference<unknown>> => {
   const defaultOrder: Order = {
-    id: -1,
+    index,
     jerseySize: null,
     shippingAddress: null,
     status: 'SHIPPING_UNASSIGNED',
   }
 
-  const order = data ? { ...defaultOrder, ...data } : defaultOrder;
+  const collRef = collection('users', wallet, 'orders');
 
-  return order;
+  const res = await addDoc(collRef, defaultOrder);
+
+  return res;
 }
 
-
-export const updateUser = async (userRefOrWallet: string | DocumentReference<DocumentData>, data: Partial<UserModel> = {}): Promise<UserModel> => {
-  const userRef = typeof userRefOrWallet === 'string' ? doc(COLLECTION_NAMES.users, userRefOrWallet) : userRefOrWallet;
-  const userData = (await getDoc(userRef)).data() || {}
-
-
-  //@ts-ignore
-  const updated = { ...userData, ...data }
-  await updateDoc(userRef, updated);
-
-  return (await getDoc(userRef)).data() as UserModel;
+export const updateUserOrder = async (wallet: string, id: string, updates: Partial<Order>): Promise<void> => {
+  await setDoc(doc(COLLECTION_NAMES.users, wallet, 'orders', id), updates, { merge: true });
 }
 
+export const getUser = async (wallet: string, { mi777Balance }: Partial<UserModel> = {}, returnSubscriber = true): Promise<UserModel> => {
+  const balance = mi777Balance || 0;
+  const userDoc = await getUserDoc(getUserDocRef(wallet));
+  const userExists = userDoc.exists();
 
-export const getUserShippingAddresses = () => { }
+  await setDoc(getUserDocRef(wallet), { mi777Balance: balance }, { merge: true });
+
+  if (!userExists) {
+    for (let index = 0; index < balance; index++) {
+      await addNewOrder(wallet, { index });
+    }
+  }
+
+  return {
+    //@ts-ignore
+    ...(userDoc.data()),
+    orders: (await getOrders(wallet)).reduce((acc, curr, i) => ({ ...acc, [curr.id]: curr }), {})
+  } as UserModel;
+}

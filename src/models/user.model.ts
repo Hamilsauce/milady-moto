@@ -1,4 +1,5 @@
-// export type JerseySize
+import type { Unsubscribe } from "firebase/firestore";
+
 export enum JerseySize {
   XSmall,
   Small,
@@ -30,7 +31,7 @@ export interface ShippingAddress {
 export type OrderStatus = 'SHIPPING_UNASSIGNED' | 'SHIPPING_ASSIGNED' | 'FULFILLED' | 'CLOSED';
 
 export interface Order {
-  id: number;
+  index?: number;
   jerseySize: JerseySizeType | null;
   shippingAddress: ShippingAddress | null;
   status: OrderStatus;
@@ -39,5 +40,23 @@ export interface Order {
 export interface UserModel {
   mi777Balance: number | null | any;
   wallet: string | null;
-  orders: Order[];
+  orders: Record<string, Order>;
 }
+
+
+export interface UserState {
+  userData: UserModel;
+}
+
+export interface UserSubscriptions {
+  user: Unsubscribe | null,
+  orders: Unsubscribe | null,
+}
+
+export interface BalanceMap {
+  balance: number;
+  contract: string;
+}
+
+export type BalanceResponse = BalanceMap[];
+

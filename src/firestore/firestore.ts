@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import type { DocumentData, DocumentSnapshot, PartialWithFieldValue, SetOptions, } from 'firebase/firestore'
+import { getDocs, type DocumentData, type DocumentSnapshot, type PartialWithFieldValue, type SetOptions, type Unsubscribe, Query, QuerySnapshot, } from 'firebase/firestore'
 import {
   Firestore,
   getFirestore,
@@ -11,7 +11,8 @@ import {
   serverTimestamp,
   CollectionReference, DocumentReference,
   updateDoc,
-  FieldValue
+  onSnapshot,
+  FieldValue, query
 } from "firebase/firestore";
 
 
@@ -30,11 +31,14 @@ const instance: Firestore = getFirestore(app);
 
 export const firestore = {
   instance,
+  query,
+  onSnapshot: (pathOrDocRef: string | DocumentReference<DocumentData>, pathSegments: string[], callback: (doc: DocumentSnapshot) => void): Unsubscribe => onSnapshot(pathOrDocRef instanceof DocumentReference<DocumentData> ? pathOrDocRef : doc(instance, pathOrDocRef, ...pathSegments), callback),
   collection: (path: string, ...pathSegments: string[]): CollectionReference => collection(instance, path, ...pathSegments),
   doc: (path: string, ...pathSegments: string[]): DocumentReference<DocumentData> => doc(instance, path, ...pathSegments),
   setDoc: (documentReference: DocumentReference<DocumentData>, data: PartialWithFieldValue<DocumentData>, options: SetOptions): Promise<void> => setDoc(documentReference, data),
   addDoc: (collectionReference: CollectionReference<unknown>, data: unknown): Promise<DocumentReference<unknown>> => addDoc(collectionReference, data),
   getDoc: (documentReference: DocumentReference<unknown>): Promise<DocumentSnapshot<unknown>> => getDoc(documentReference),
+  getDocs: (query: Query<unknown>): Promise<QuerySnapshot<unknown>> => getDocs(query),
   updateDoc: (documentReference: DocumentReference<unknown>, data: Partial<unknown>): Promise<void> => updateDoc(documentReference, data),
   getServerTimestamp: (): FieldValue => serverTimestamp(),
 }
