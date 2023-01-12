@@ -1,6 +1,6 @@
 import type { Order, UserModel } from '@/models/user.model';
 import { firestore } from './firestore';
-import { type DocumentReference, type DocumentData, type DocumentSnapshot, onSnapshot, type Unsubscribe, QueryDocumentSnapshot, QuerySnapshot, CollectionReference, query, } from 'firebase/firestore';
+import { type DocumentReference, type DocumentData, type DocumentSnapshot, onSnapshot, type Unsubscribe, QueryDocumentSnapshot, QuerySnapshot } from 'firebase/firestore';
 
 const { collection, doc, setDoc, addDoc, getDoc, updateDoc, getDocs } = firestore;
 
@@ -27,8 +27,8 @@ export const getUserDoc = async (ref: DocumentReference): Promise<DocumentSnapsh
   return await getDoc(ref);
 }
 
-export const getOrders = async (wallet: string): Promise<QueryDocumentSnapshot<unknown>[]> => {
-  return (await getDocs(getOrderCollectionRef(wallet))).docs;
+export const getOrders = async (wallet: string): Promise<Order[]> => {
+  return (await getDocs(getOrderCollectionRef(wallet))).docs.map((_) => ({ ...(_ as QueryDocumentSnapshot<Order>).data(), id: _.id }) as Order);
 }
 
 export const addNewOrder = async (wallet: string, { index }: Partial<Order>): Promise<DocumentReference<unknown>> => {
@@ -53,19 +53,27 @@ export const updateUserOrder = async (wallet: string, id: string, updates: Parti
 export const getUser = async (wallet: string, { mi777Balance }: Partial<UserModel> = {}, returnSubscriber = true): Promise<UserModel> => {
   const balance = mi777Balance || 0;
   const userDoc = await getUserDoc(getUserDocRef(wallet));
-  const userExists = userDoc.exists();
 
-  await setDoc(getUserDocRef(wallet), { mi777Balance: balance }, { merge: true });
+  // * 1) Create or update user doc
+  await setDoc(getUserDocRef(wallet), { mi777Balance: balance, wallet }, { merge: true });
 
-  if (!userExists) {
-    for (let index = 0; index < balance; index++) {
-      await addNewOrder(wallet, { index });
+  // * 2) Get reference to existing orders collection (creates new empty collection if non existent)
+  const userOrders = await getOrders(wallet);
+
+  // * 3) Get the difference of current balance and number of existing orders
+
+  const newOrderCount = mi777Balance - userOrders.length
+
+  // * 4) If difference is greater than 0, add new docs for each additional token
+  if (newOrderCount > 0) {
+    for (let index = 0; index < newOrderCount; index++) {
+      await addNewOrder(wallet, { index: userOrders.length });
     }
   }
 
   return {
     //@ts-ignore
     ...(userDoc.data()),
-    orders: (await getOrders(wallet)).reduce((acc, curr, i) => ({ ...acc, [curr.id]: curr }), {})
+    orders: (await getOrders(wallet)).reduce((acc, curr: Order, i) => ({ ...acc, [(curr.id || '')]: curr }), {})
   } as UserModel;
 }

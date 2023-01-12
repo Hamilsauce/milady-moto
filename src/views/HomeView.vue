@@ -46,7 +46,7 @@ const rowIndexes = [
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  z-index: 5;
+  z-index: 0;
   height: 100%;
   gap: 16px;
 }

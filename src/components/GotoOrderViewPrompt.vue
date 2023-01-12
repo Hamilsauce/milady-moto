@@ -4,6 +4,9 @@ import { computed, ref } from "vue";
 import router from "@/router";
 import { useRoute } from "vue-router";
 
+
+
+
 const userStore = useUserStore();
 const currentRoute = useRoute()
 // currentRouteName.
@@ -79,7 +82,7 @@ const show = computed(() => !currentRoute.name?.toString().toLowerCase().include
   position: absolute;
   top: 10px;
   left: 20px;
-  z-index: 500;
+  z-index: 9;
 }
 
 #close-prompt {

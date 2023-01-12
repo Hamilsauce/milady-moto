@@ -1,18 +1,17 @@
 <script lang="ts" setup>
 import { useUserStore } from '@/stores/user.store';
-import { firestore } from '@/firestore/firestore';
 import { computed, ref } from 'vue';
-import { type UserModel, type JerseySizeType, JerseySize, type Order, type OrderStatus, type ShippingAddress, } from '@/models/user.model';
+import { type JerseySizeType, JerseySize, type Order, type OrderStatus, type ShippingAddress, } from '@/models/user.model';
 
 const props = defineProps({
-  orderId: Number
-})
+  orderId: String
+});
 
-const userStore = useUserStore()
-const order = userStore.getOrder(props.orderId || 0)
+const userStore = useUserStore();
 
-const disableForm = ref(order?.status !== 'SHIPPING_UNASSIGNED')
-// const showConfirmation = ref(order?.status !== 'SHIPPING_UNASSIGNED')
+const order = userStore.getOrder(props.orderId || '');
+
+const disableForm = ref(order?.status !== 'SHIPPING_UNASSIGNED');
 const showConfirmation = computed(() => order?.status !== 'SHIPPING_UNASSIGNED');
 
 const jerseySizes: JerseySizeType[] = [
@@ -49,22 +48,15 @@ const validateData = (order: ShippingAddress): boolean => {
 }
 
 const handleSubmit = () => {
-  // const order: Order = {
-  //   ...order as Order,
-  //   jerseySize,
-  //   shippingAddress,
-  // }
-  console.log('shippingAddress.value in handle submit', shippingAddress.value);
-
   if (validateData(shippingAddress.value)) {
-    userStore.updateOrder(order.id, {
+    userStore.updateOrder(order.id || '', {
       jerseySize: jerseySize.value,
       shippingAddress: shippingAddress.value,
       status: 'SHIPPING_ASSIGNED',
     })
   }
-
 }
+
 const toggleCollapse = () => {
   collapsed.value = !collapsed.value;
 }
@@ -73,7 +65,14 @@ const toggleCollapse = () => {
 
 <template>
   <div class="shipping-form-view">
-    <h1 @click="toggleCollapse" class="shipping-form-title">Order #{{ order?.id }}</h1>
+    <div class="shipping-form-button">
+      <h1 @click="toggleCollapse" class="shipping-form-title">Order # {{ order?.id }}</h1>
+      <svg v-if="showConfirmation" class="expand-icon" width="32" height="32" viewBox="-4 -4 32 32"
+        xmlns="http://www.w3.org/2000/svg" _transform="translate(0,0) rotate(50%)"
+        style="transform-origin: center center;border:1px solid #FFFFFF00;" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <path d=" M 1,6 13.25,17.65 M 23,6.36 10.75,17.65" style="stroke:#0000FF;stroke-width:4;" />
+      </svg>
+    </div>
     <div v-if="showConfirmation" class="order-confirmation" :class="{ collapsed: collapsed }">
       <div class="order-status">{{ displayStatus }}</div>
       <div class="order-addressee">{{ shippingAddress.name }}</div>
@@ -137,21 +136,37 @@ const toggleCollapse = () => {
   width: 100%;
   gap: 16px;
   padding: 16px;
-  /* height: 100%; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   gap: 16px;
   width: 500px;
-  /* height: 100%; */
   color: var(--order-prompt-purple);
   font-size: 24px;
 }
 
 .order-confirmation {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  gap: 8px;
+  padding: 0 64px;
   height: 100%;
   overflow: hidden;
+}
+
+.order-confirmation>* {
+  text-align: left;
+  width: 100%;
+  font-family: 'Comic Sans MS';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
 }
 
 .order-confirmation.collapsed,
@@ -160,13 +175,12 @@ const toggleCollapse = () => {
   display: none;
 }
 
-
 .form-group {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 32px;
+  gap: 16px;
   width: 100%;
 }
 
@@ -195,6 +209,7 @@ select {
 
 .shipping-form-title {
   width: 100%;
+  padding: 16px;
   font-size: 24px;
   font-weight: 800;
   text-align: center;
@@ -202,12 +217,21 @@ select {
   user-select: none;
 }
 
-/* @media (min-width: 1024px) {
-  .shipping-form {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    background-color: #4f24c6;
-  }
-} */
+.shipping-form-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  gap: 0px;
+  height: fit-content;
+  width: 100%;
+  padding: 16px 32px;
+  font-size: 24px;
+  font-weight: 800;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  border-top: 2px solid black;
+}
 </style>

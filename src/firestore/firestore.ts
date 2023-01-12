@@ -1,3 +1,4 @@
+import type { Order, UserModel } from "@/models/user.model";
 import { initializeApp } from "firebase/app";
 import { getDocs, type DocumentData, type DocumentSnapshot, type PartialWithFieldValue, type SetOptions, type Unsubscribe, Query, QuerySnapshot, } from 'firebase/firestore'
 import {
@@ -12,7 +13,9 @@ import {
   CollectionReference, DocumentReference,
   updateDoc,
   onSnapshot,
-  FieldValue, query
+  FieldValue,
+  query,
+  deleteDoc,
 } from "firebase/firestore";
 
 
@@ -36,7 +39,13 @@ export const firestore = {
   collection: (path: string, ...pathSegments: string[]): CollectionReference => collection(instance, path, ...pathSegments),
   doc: (path: string, ...pathSegments: string[]): DocumentReference<DocumentData> => doc(instance, path, ...pathSegments),
   setDoc: (documentReference: DocumentReference<DocumentData>, data: PartialWithFieldValue<DocumentData>, options: SetOptions): Promise<void> => setDoc(documentReference, data),
-  addDoc: (collectionReference: CollectionReference<unknown>, data: unknown): Promise<DocumentReference<unknown>> => addDoc(collectionReference, data),
+  async deleteDoc2(documentReference: DocumentReference<DocumentData>, data: PartialWithFieldValue<DocumentData>, options: SetOptions): Promise<string> {
+    const id = documentReference.id;
+    await deleteDoc(documentReference);
+
+    return id;
+  },
+  addDoc: (collectionReference: CollectionReference<unknown>, data: Partial<Order> | Partial<UserModel>): Promise<DocumentReference<Order> | DocumentReference<Order>> => addDoc(collectionReference, data) as Promise<DocumentReference<Order> | DocumentReference<Order>>,
   getDoc: (documentReference: DocumentReference<unknown>): Promise<DocumentSnapshot<unknown>> => getDoc(documentReference),
   getDocs: (query: Query<unknown>): Promise<QuerySnapshot<unknown>> => getDocs(query),
   updateDoc: (documentReference: DocumentReference<unknown>, data: Partial<unknown>): Promise<void> => updateDoc(documentReference, data),

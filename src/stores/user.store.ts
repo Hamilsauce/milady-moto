@@ -58,7 +58,17 @@ export const useUserStore = defineStore("user", () => {
     subscriptions.orders = listenOnUserOrders(wallet, (ordersSnap) => {
       ordersSnap.forEach((doc) => {
         const docId = doc.id;
-        Object.assign(userState.orders[docId], doc);
+        console.log('USER ORDERS FIRESTORE LISTENER');
+        console.log({
+          doId: doc.id,
+          userStateOrders: userState.orders,
+          doc,
+          selectedOrde: userState.orders[docId],
+        });
+
+
+
+        Object.assign(userState.orders[docId], doc.data());
       });
     });
   }
@@ -99,7 +109,7 @@ export const useUserStore = defineStore("user", () => {
   }
 
   const fetchUser = async (wallet: string, mi777Balance: number): Promise<null> => {
-    const res = await getUser(wallet, { mi777Balance });
+    const res = await getUser(wallet, { mi777Balance, wallet });
     Object.assign(userState, res);
 
     return null;

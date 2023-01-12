@@ -31,6 +31,7 @@ export interface ShippingAddress {
 export type OrderStatus = 'SHIPPING_UNASSIGNED' | 'SHIPPING_ASSIGNED' | 'FULFILLED' | 'CLOSED';
 
 export interface Order {
+  id?: string;
   index?: number;
   jerseySize: JerseySizeType | null;
   shippingAddress: ShippingAddress | null;

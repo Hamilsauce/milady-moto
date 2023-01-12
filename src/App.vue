@@ -51,7 +51,7 @@ const handleFormButtonClick = async (e: Event): Promise<void> => {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  z-index: 5;
+  z-index: 4;
   height: 100%;
   overflow: scroll;
   gap: 16px;

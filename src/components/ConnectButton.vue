@@ -26,9 +26,11 @@ const handleConnectClick = async () => {
   position: absolute;
   right: 10%;
   top: 5%;
-  z-index: 500;
 }
 
+#connect-container, #connect-container * {
+  z-index: 100;
+}
 #connect-button {
   width: 100%;
   height: 100%;
@@ -39,7 +41,6 @@ const handleConnectClick = async () => {
   font-weight: 600;
   font-size: 20px;
   font-family: var(--font-family-ibm_plex_mono);
-  z-index: 501;
 }
 
 #connect-button.gray {

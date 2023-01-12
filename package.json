@@ -5,6 +5,7 @@
   "homepage": "https://hamilsauce.github.io/milady-moto",
   "scripts": {
     "dev": "vite",
+    "dev2": "vite --host --port 3000",
     "build": "run-p type-check build-only",
     "preview": "vite preview",
     "build-only": "vite build",
