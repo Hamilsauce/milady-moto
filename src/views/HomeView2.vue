@@ -218,7 +218,12 @@ const userStore = useUserStore();
 const handleMintClick = (e: UIEvent) => {
   clickedMint.value = true;
   const popup = open('https://www.scatter.art/collection/0x8fc0d90f2c45a5e7f94904075c952e0943cfccfd?tab=mint', 'Mint your Milady!', 'popup=true');
+}
 
+const handleMirrorLink = (e: UIEvent) => {
+
+  clickedMint.value = true;
+  const popup = open('https://www.scatter.art/collection/0x8fc0d90f2c45a5e7f94904075c952e0943cfccfd?tab=mint', 'Mint your Milady!', 'popup=true');
 }
 
 window.addEventListener('focus', e => {
@@ -367,7 +372,7 @@ window.addEventListener('focus', e => {
               </a>
             </div>
             <div @click="handleMintClick">
-              <img class="x3_0_-mint" :src="x3_0_Mint" alt="3_0_Mint" />
+              <img id="mint-button-1" class="x3_0_-mint mint-button" :src="x3_0_Mint" alt="3_0_Mint" />
             </div>
           </div>
           <div class="flex-col-18">
@@ -492,7 +497,8 @@ window.addEventListener('focus', e => {
                   ibmplexmono-normal-white-22px
                 ">
                 <span class="ibmplexmono-normal-black-22px">{{ spanText111 }}</span>
-                <span class="span1-1 ibmplexmono-bold-purple-30px">{{ spanText112 }}</span>
+                <a href="https://mirror.xyz/zorhol.eth/uPGvlrhjSY722zhchp2NtY_eVkG5O0OodsCx5-A6j80"
+                  class="span1-1 ibmplexmono-bold-purple-30px">{{ spanText112 }}</a>
               </p>
             </div>
             <p class="
@@ -584,7 +590,7 @@ window.addEventListener('focus', e => {
               <span class="span6-1 ibmplexmono-light-black-20px">{{ spanText133 }}</span>
             </p>
           </div>
-          <div class="overlap-group6-1">
+          <div class="overlap-group6-1" >
             <p class="
                 learn-more-read-our-mirrorxyz-post-2
                 ibmplexmono-normal-white-22px
@@ -759,6 +765,12 @@ window.addEventListener('focus', e => {
   width: 800px;
   height: 1200px;
   margin-top: 200px;
+}
+
+.mint-button:hover {
+  filter: brightness(1.4);
+  transition: 0.2s;
+
 }
 
 .macbook-pro-16-frontend {

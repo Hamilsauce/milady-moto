@@ -1,3 +1,4 @@
+
 export const group901Data = {
     step1Mint: "Step 2: Order",
     mintToken: "Connect Wallet",
@@ -12,7 +13,7 @@ export const macBookPro16FrontEndCONNECTEDWithOpData = {
     spanText3: "Select your Sizes + Enter your Shipping Destinations",
     spanText4: " w/ the mi777 privacy-enabled shipping experience.",
     placeMyJerseyOrders: "Place my Jersey Orders!",
-    xXtgonqzggoeUnsplash1: "src/assets/content-rows/0_0.jpg",
+    xXtgonqzggoeUnsplash1: "../assets/content-rows/0_0.jpg",
     spanText5: "mi777: the MiladyMoto Jersey",
     spanText6: "a Physi-Digi Love Letter to Milady",
     spanText7: "Physi-Digi",
