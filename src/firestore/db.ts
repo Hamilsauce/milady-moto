@@ -50,7 +50,7 @@ export const updateUserOrder = async (wallet: string, id: string, updates: Parti
   await setDoc(doc(COLLECTION_NAMES.users, wallet, 'orders', id), updates, { merge: true });
 }
 
-export const getUser = async (wallet: string, { mi777Balance }: Partial<UserModel> = {}, returnSubscriber = true): Promise<UserModel> => {
+export const getUser = async (wallet: string, { mi777Balance }: Partial<UserModel> = {}): Promise<UserModel> => {
   const balance = mi777Balance || 0;
   const userDoc = await getUserDoc(getUserDocRef(wallet));
 
@@ -59,6 +59,7 @@ export const getUser = async (wallet: string, { mi777Balance }: Partial<UserMode
 
   // * 2) Get reference to existing orders collection (creates new empty collection if non existent)
   const userOrders = await getOrders(wallet);
+  console.warn('[IN USERSTORE GET USER > userOrders()]', userOrders);
 
   // * 3) Get the difference of current balance and number of existing orders
 

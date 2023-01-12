@@ -109,7 +109,7 @@ export const useUserStore = defineStore("user", () => {
   }
 
   const fetchUser = async (wallet: string, mi777Balance: number): Promise<null> => {
-    const res = await getUser(wallet, { mi777Balance, wallet });
+    const res = await getUser(wallet, { mi777Balance });
     Object.assign(userState, res);
 
     return null;

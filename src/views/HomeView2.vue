@@ -273,9 +273,7 @@ window.addEventListener('focus', e => {
           <!-- <div class="flex-row-item-2 valign-text-middle">
             <span>
               <span class="comicsansms-bold-purple-40px">{{ spanText7 }}</span>
-              <span class="span-10 comicsansms-bold-purple-40px">{{
-                spanText8
-              }}</span>
+              <span class="span-10 comicsansms-bold-purple-40px">{{spanText8}}</span>
               <span class="comicsansms-bold-purple-40px">{{ spanText9 }}</span>
             </span>
           </div> -->
@@ -294,13 +292,9 @@ window.addEventListener('focus', e => {
         <div class="flex-col-14">
           <div class="overlap-group16-1">
             <p class="milady-designed-mo-1 ibmplexmono-normal-black-22px">
-              <span class="ibmplexmono-normal-black-22px">{{
-                spanText12
-              }}</span>
+              <span class="ibmplexmono-normal-black-22px">{{ spanText12 }}</span>
               <span class="ibmplexmono-light-black-22px">{{ spanText13 }}</span>
-              <span class="span-10 ibmplexmono-bold-black-22px">{{
-                spanText14
-              }}</span>
+              <span class="span-10 ibmplexmono-bold-black-22px">{{ spanText14 }}</span>
               <span class="ibmplexmono-bold-black-22px">{{ spanText15 }}</span>
             </p>
             <img class="x2_0" :src="x2_0" alt="2_0" />
@@ -326,16 +320,10 @@ window.addEventListener('focus', e => {
             <span class="ibmplexmono-light-black-22px">{{ spanText30 }}</span>
             <span class="ibmplexmono-bold-black-22px-2">{{ spanText31 }}</span>
             <span class="ibmplexmono-normal-black-22px">{{ spanText32 }}</span>
-            <span class="span-10 ibmplexmono-bold-black-22px">{{
-              spanText33
-            }}</span>
+            <span class="span-10 ibmplexmono-bold-black-22px">{{ spanText33 }}</span>
             <span class="ibmplexmono-bold-black-22px">{{ spanText34 }}</span>
-            <span class="span-10 ibmplexmono-bold-black-22px">{{
-              spanText35
-            }}</span>
-            <span class="span20-1 ibmplexmono-light-black-18px">{{
-              spanText36
-            }}</span>
+            <span class="span-10 ibmplexmono-bold-black-22px">{{ spanText35 }}</span>
+            <span class="span20-1 ibmplexmono-light-black-18px">{{ spanText36 }}</span>
           </p>
           <img class="x2_2" :src="x2_2" alt="2_2" /><img class="x2_3" :src="x2_3" alt="2_3" />
         </div>
@@ -350,14 +338,10 @@ window.addEventListener('focus', e => {
                   ibmplexmono-normal-black-30px
                 ">
                 <span>
-                  <span class="ibmplexmono-normal-black-30px">{{spanText37
-}}</span>
-                  <span class="span-10 ibmplexmono-bold-black-30px">{{spanText38
-}}</span>
-                  <span class="ibmplexmono-bold-black-30px">{{spanText39
-}}</span>
-                  <span class="ibmplexmono-normal-black-30px">{{spanText40
-}}</span>
+                  <span class="ibmplexmono-normal-black-30px">{{ spanText37 }}</span>
+                  <span class="span-10 ibmplexmono-bold-black-30px">{{ spanText38 }}</span>
+                  <span class="ibmplexmono-bold-black-30px">{{ spanText39 }}</span>
+                  <span class="ibmplexmono-normal-black-30px">{{ spanText40 }}</span>
                 </span>
               </div>
             </div>
@@ -369,26 +353,16 @@ window.addEventListener('focus', e => {
               <div class="step-1-2 comicsansms-bold-purple-25px" v-html="step1"></div>
               <a href="#mi777-raffle-section">
                 <p class="mint-token-via-scatt-1 ibmplexmono-bold-black-25px">
-                  <span class="span0-1 ibmplexmono-bold-black-25px">{{spanText41
-}}</span>
-                  <span class="span-11 ibmplexmono-bold-black-25px">{{spanText42
-}}</span>
-                  <span class="span-12 ibmplexmono-normal-black-22px-2">{{spanText43
-}}</span>
-                  <span class="span-12 ibmplexmono-normal-black-22px">{{spanText44
-}}</span>
-                  <span class="span-12 ibmplexmono-normal-black-22px-2">{{spanText45
-}}</span>
-                  <span class="span-12 ibmplexmono-normal-black-22px">{{spanText46
-}}</span>
-                  <span class="span-13 ibmplexmono-normal-black-22px">{{spanText47
-}}</span>
-                  <span class="span7-1 ibmplexmono-normal-black-22px-2">{{spanText48
-}}</span>
-                  <span class="span-13 ibmplexmono-normal-black-22px-2">{{spanText49
-}}</span>
-                  <span class="span-13 ibmplexmono-normal-black-22px">{{spanText50
-}}</span>
+                  <span class="span0-1 ibmplexmono-bold-black-25px">{{ spanText41 }}</span>
+                  <span class="span-11 ibmplexmono-bold-black-25px">{{ spanText42 }}</span>
+                  <span class="span-12 ibmplexmono-normal-black-22px-2">{{ spanText43 }}</span>
+                  <span class="span-12 ibmplexmono-normal-black-22px">{{ spanText44 }}</span>
+                  <span class="span-12 ibmplexmono-normal-black-22px-2">{{ spanText45 }}</span>
+                  <span class="span-12 ibmplexmono-normal-black-22px">{{ spanText46 }}</span>
+                  <span class="span-13 ibmplexmono-normal-black-22px">{{ spanText47 }}</span>
+                  <span class="span7-1 ibmplexmono-normal-black-22px-2">{{ spanText48 }}</span>
+                  <span class="span-13 ibmplexmono-normal-black-22px-2">{{ spanText49 }}</span>
+                  <span class="span-13 ibmplexmono-normal-black-22px">{{ spanText50 }}</span>
                 </p>
               </a>
             </div>
@@ -400,16 +374,16 @@ window.addEventListener('focus', e => {
             <div class="group-59-1">
               <div class="step-2 comicsansms-bold-purple-25px">{{ step2 }}</div>
               <p class="connect-to-mi777-phy-1 ibmplexmono-bold-black-25px">
-                <span class="span0-1 ibmplexmono-bold-black-25px">{{spanText51}}</span>
-                <span class="span-11 ibmplexmono-bold-black-25px">{{spanText52}}</span>
-                <span class="span-11 ibmplexmono-bold-black-25px-2">{{spanText53}}</span>
-                <span class="span-13 ibmplexmono-normal-black-22px">{{spanText54}}</span>
-                <span class="span-13 ibmplexmono-normal-black-22px-2">{{spanText55}}</span>
-                <span class="span-13 ibmplexmono-normal-black-22px">{{spanText56}}</span>
-                <span class="span-13 ibmplexmono-normal-black-22px-2">{{spanText57}}</span>
-                <span class="span-13 ibmplexmono-normal-black-22px">{{spanText58}}</span>
-                <span class="span-13 ibmplexmono-normal-black-22px-2">{{spanText59}}</span>
-                <span class="span-13 ibmplexmono-normal-black-22px">{{spanText60}}</span>
+                <span class="span0-1 ibmplexmono-bold-black-25px">{{ spanText51 }}</span>
+                <span class="span-11 ibmplexmono-bold-black-25px">{{ spanText52 }}</span>
+                <span class="span-11 ibmplexmono-bold-black-25px-2">{{ spanText53 }}</span>
+                <span class="span-13 ibmplexmono-normal-black-22px">{{ spanText54 }}</span>
+                <span class="span-13 ibmplexmono-normal-black-22px-2">{{ spanText55 }}</span>
+                <span class="span-13 ibmplexmono-normal-black-22px">{{ spanText56 }}</span>
+                <span class="span-13 ibmplexmono-normal-black-22px-2">{{ spanText57 }}</span>
+                <span class="span-13 ibmplexmono-normal-black-22px">{{ spanText58 }}</span>
+                <span class="span-13 ibmplexmono-normal-black-22px-2">{{ spanText59 }}</span>
+                <span class="span-13 ibmplexmono-normal-black-22px">{{ spanText60 }}</span>
               </p>
             </div>
             <img class="x3_1_-connect" :src="x3_1_Connect" alt="3_1_Connect" />
@@ -418,15 +392,15 @@ window.addEventListener('focus', e => {
             <div class="group-65-1">
               <div class="step-2 comicsansms-bold-purple-25px">{{ step3 }}</div>
               <p class="end-of-mint-all-phy-1 ibmplexmono-bold-black-25px">
-                <span class="span-11 ibmplexmono-bold-black-25px">{{spanText61}}</span>
-                <span class="span-13 ibmplexmono-normal-black-22px">{{spanText62}}</span>
-                <span class="span-13 ibmplexmono-normal-black-22px-2">{{spanText63}}</span>
-                <span class="span-13 ibmplexmono-normal-black-22px">{{spanText64}}</span>
-                <span class="span-12 ibmplexmono-bold-black-22px">{{spanText65}}</span>
-                <span class="span-13 ibmplexmono-normal-black-22px">{{spanText66}}</span>
-                <span class="span-13 ibmplexmono-normal-black-22px-2">{{spanText67}}</span>
-                <span class="span-13 ibmplexmono-normal-black-22px">{{spanText68}}</span>
-                <span class="span-11 ibmplexmono-normal-black-25px">{{spanText69}}</span>
+                <span class="span-11 ibmplexmono-bold-black-25px">{{ spanText61 }}</span>
+                <span class="span-13 ibmplexmono-normal-black-22px">{{ spanText62 }}</span>
+                <span class="span-13 ibmplexmono-normal-black-22px-2">{{ spanText63 }}</span>
+                <span class="span-13 ibmplexmono-normal-black-22px">{{ spanText64 }}</span>
+                <span class="span-12 ibmplexmono-bold-black-22px">{{ spanText65 }}</span>
+                <span class="span-13 ibmplexmono-normal-black-22px">{{ spanText66 }}</span>
+                <span class="span-13 ibmplexmono-normal-black-22px-2">{{ spanText67 }}</span>
+                <span class="span-13 ibmplexmono-normal-black-22px">{{ spanText68 }}</span>
+                <span class="span-11 ibmplexmono-normal-black-25px">{{ spanText69 }}</span>
               </p>
             </div>
             <img class="x3_0_-end-of-mint" :src="x3_0_EndOfMint" alt="3_0_End-of-Mint" />
@@ -438,28 +412,18 @@ window.addEventListener('focus', e => {
               <div class="group-88-1" :style="{ 'background-image': 'url(' + group88 + ')' }"></div>
               <div class="group-89-1">
                 <p class="in-addition-to-physi-1 ibmplexmono-normal-black-22px">
-                  <span class="ibmplexmono-normal-black-22px">{{spanText70
-}}</span>
-                  <span class="span-10 ibmplexmono-normal-black-22px">{{spanText71
-}}</span>
-                  <span class="ibmplexmono-normal-black-22px">{{spanText72
-}}</span>
-                  <span class="ibmplexmono-bold-black-22px-2">{{spanText73
-}}</span>
-                  <span class="ibmplexmono-normal-black-22px-2">{{spanText74
-}}</span>
+                  <span class="ibmplexmono-normal-black-22px">{{ spanText70 }}</span>
+                  <span class="span-10 ibmplexmono-normal-black-22px">{{ spanText71 }}</span>
+                  <span class="ibmplexmono-normal-black-22px">{{ spanText72 }}</span>
+                  <span class="ibmplexmono-bold-black-22px-2">{{ spanText73 }}</span>
+                  <span class="ibmplexmono-normal-black-22px-2">{{ spanText74 }}</span>
                 </p>
                 <p class="x777-minted-milady-m-1 ibmplexmono-bold-white-25px">
-                  <span class="ibmplexmono-bold-black-25px">{{spanText75
-}}</span>
-                  <span class="span-10 ibmplexmono-bold-purple-25px">{{spanText76
-}}</span>
-                  <span class="ibmplexmono-bold-black-25px">{{spanText77
-}}</span>
-                  <span class="ibmplexmono-bold-purple-25px-2">{{spanText78
-}}</span>
-                  <span class="ibmplexmono-normal-black-25px">{{spanText79
-}}</span>
+                  <span class="ibmplexmono-bold-black-25px">{{ spanText75 }}</span>
+                  <span class="span-10 ibmplexmono-bold-purple-25px">{{ spanText76 }}</span>
+                  <span class="ibmplexmono-bold-black-25px">{{ spanText77 }}</span>
+                  <span class="ibmplexmono-bold-purple-25px-2">{{ spanText78 }}</span>
+                  <span class="ibmplexmono-normal-black-25px">{{ spanText79 }}</span>
                 </p>
               </div>
             </div>
@@ -470,58 +434,32 @@ window.addEventListener('focus', e => {
             <div class="overlap-group14-1">
               <div class="group-101-1">
                 <p class="nft-raffle-milesto-1 ibmplexmono-normal-black-40px">
-                  <span class="ibmplexmono-normal-black-40px">{{spanText80
-}}</span>
-                  <span class="span-12 ibmplexmono-normal-black-22px-2">{{spanText81
-}}</span>
-                  <span class="span-12 ibmplexmono-bold-black-22px-2">{{spanText82
-}}</span>
-                  <span class="span-12 ibmplexmono-normal-black-22px">{{spanText83
-}}</span>
-                  <span class="span-12 ibmplexmono-normal-black-22px-2">{{spanText84
-}}</span>
-                  <span class="span-12 ibmplexmono-normal-black-22px">{{spanText85
-}}</span>
-                  <span class="span-14 ibmplexmono-normal-black-22px">{{spanText86
-}}</span>
-                  <span class="span-12 ibmplexmono-normal-black-22px">{{spanText87
-}}</span>
-                  <span class="span-14 ibmplexmono-normal-black-22px">{{spanText88
-}}</span>
-                  <span class="span-12 ibmplexmono-normal-black-22px">{{spanText89
-}}</span>
-                  <span class="span-14 ibmplexmono-normal-black-22px">{{spanText90
-}}</span>
-                  <span class="span-12 ibmplexmono-normal-black-22px">{{spanText91
-}}</span>
-                  <span class="span-12 ibmplexmono-bold-black-22px-2">{{spanText92
-}}</span>
-                  <span class="span-12 ibmplexmono-normal-black-22px">{{spanText93
-}}</span>
-                  <span class="span-12 ibmplexmono-normal-black-22px-2">{{spanText94
-}}</span>
-                  <span class="span-14 ibmplexmono-normal-black-22px">{{spanText95
-}}</span>
-                  <span class="span-12 ibmplexmono-normal-black-22px">{{spanText96
-}}</span>
-                  <span class="span-14 ibmplexmono-normal-black-22px">{{spanText97
-}}</span>
-                  <span class="span-12 ibmplexmono-normal-black-22px">{{spanText98
-}}</span>
-                  <span class="span-14 ibmplexmono-normal-black-22px">{{spanText99
-}}</span>
-                  <span class="span-12 ibmplexmono-normal-black-22px">{{spanText100
-}}</span>
-                  <span class="span-12 ibmplexmono-bold-black-22px-2">{{spanText101
-}}</span>
-                  <span class="span-12 ibmplexmono-normal-black-22px">{{spanText102
-}}</span>
-                  <span class="span-14 ibmplexmono-normal-black-22px-2">{{spanText103
-}}</span>
-                  <span class="span-12 ibmplexmono-normal-black-22px">{{spanText104
-}}</span>
-                  <span class="span-14 ibmplexmono-normal-black-22px">{{spanText105
-}}</span>
+                  <span class="ibmplexmono-normal-black-40px">{{ spanText80 }}</span>
+                  <span class="span-12 ibmplexmono-normal-black-22px-2">{{ spanText81 }}</span>
+                  <span class="span-12 ibmplexmono-bold-black-22px-2">{{ spanText82 }}</span>
+                  <span class="span-12 ibmplexmono-normal-black-22px">{{ spanText83 }}</span>
+                  <span class="span-12 ibmplexmono-normal-black-22px-2">{{ spanText84 }}</span>
+                  <span class="span-12 ibmplexmono-normal-black-22px">{{ spanText85 }}</span>
+                  <span class="span-14 ibmplexmono-normal-black-22px">{{ spanText86 }}</span>
+                  <span class="span-12 ibmplexmono-normal-black-22px">{{ spanText87 }}</span>
+                  <span class="span-14 ibmplexmono-normal-black-22px">{{ spanText88 }}</span>
+                  <span class="span-12 ibmplexmono-normal-black-22px">{{ spanText89 }}</span>
+                  <span class="span-14 ibmplexmono-normal-black-22px">{{ spanText90 }}</span>
+                  <span class="span-12 ibmplexmono-normal-black-22px">{{ spanText91 }}</span>
+                  <span class="span-12 ibmplexmono-bold-black-22px-2">{{ spanText92 }}</span>
+                  <span class="span-12 ibmplexmono-normal-black-22px">{{ spanText93 }}</span>
+                  <span class="span-12 ibmplexmono-normal-black-22px-2">{{ spanText94 }}</span>
+                  <span class="span-14 ibmplexmono-normal-black-22px">{{ spanText95 }}</span>
+                  <span class="span-12 ibmplexmono-normal-black-22px">{{ spanText96 }}</span>
+                  <span class="span-14 ibmplexmono-normal-black-22px">{{ spanText97 }}</span>
+                  <span class="span-12 ibmplexmono-normal-black-22px">{{ spanText98 }}</span>
+                  <span class="span-14 ibmplexmono-normal-black-22px">{{ spanText99 }}</span>
+                  <span class="span-12 ibmplexmono-normal-black-22px">{{ spanText100 }}</span>
+                  <span class="span-12 ibmplexmono-bold-black-22px-2">{{ spanText101 }}</span>
+                  <span class="span-12 ibmplexmono-normal-black-22px">{{ spanText102 }}</span>
+                  <span class="span-14 ibmplexmono-normal-black-22px-2">{{ spanText103 }}</span>
+                  <span class="span-12 ibmplexmono-normal-black-22px">{{ spanText104 }}</span>
+                  <span class="span-14 ibmplexmono-normal-black-22px">{{ spanText105 }}</span>
                 </p>
                 <p class="
                     x777-minted-milady-maker-6790-1
@@ -529,16 +467,11 @@ window.addEventListener('focus', e => {
                     ibmplexmono-bold-white-32px
                   ">
                   <span>
-                    <span class="ibmplexmono-bold-black-32px">{{spanText106
-  }}</span>
-                    <span class="ibmplexmono-bold-black-32px-2">{{spanText107
-  }}</span>
-                    <span class="ibmplexmono-bold-black-32px">{{spanText108
-  }}</span>
-                    <span class="span-10 ibmplexmono-bold-black-32px">{{spanText109
-  }}</span>
-                    <span class="ibmplexmono-bold-black-32px">{{spanText110
-  }}</span>
+                    <span class="ibmplexmono-bold-black-32px">{{ spanText106 }}</span>
+                    <span class="ibmplexmono-bold-black-32px-2">{{ spanText107 }}</span>
+                    <span class="ibmplexmono-bold-black-32px">{{ spanText108 }}</span>
+                    <span class="span-10 ibmplexmono-bold-black-32px">{{ spanText109 }}</span>
+                    <span class="ibmplexmono-bold-black-32px">{{ spanText110 }}</span>
                   </span>
                 </p>
               </div>
@@ -558,8 +491,8 @@ window.addEventListener('focus', e => {
                   learn-more-read-our-mirrorxyz-post-1
                   ibmplexmono-normal-white-22px
                 ">
-                <span class="ibmplexmono-normal-black-22px">{{spanText111}}</span>
-                <span class="span1-1 ibmplexmono-bold-purple-30px">{{spanText112}}</span>
+                <span class="ibmplexmono-normal-black-22px">{{ spanText111 }}</span>
+                <span class="span1-1 ibmplexmono-bold-purple-30px">{{ spanText112 }}</span>
               </p>
             </div>
             <p class="
@@ -568,9 +501,9 @@ window.addEventListener('focus', e => {
                 ibmplexmono-light-black-20px
               ">
               <span>
-                <span class="ibmplexmono-light-black-20px">{{spanText113}}</span>
-                <span class="span-10 ibmplexmono-light-black-20px">{{spanText114}}</span>
-                <span class="ibmplexmono-light-black-20px">{{spanText115}}</span>
+                <span class="ibmplexmono-light-black-20px">{{ spanText113 }}</span>
+                <span class="span-10 ibmplexmono-light-black-20px">{{ spanText114 }}</span>
+                <span class="ibmplexmono-light-black-20px">{{ spanText115 }}</span>
               </span>
             </p>
           </div>
@@ -630,57 +563,25 @@ window.addEventListener('focus', e => {
           <div class="flex-row-10 ibmplexmono-bold-black-22px">
             <p class="flex-row-item-3">
               <span class="ibmplexmono-bold-black-22px">{{ spanText116 }}</span>
-              <span class="ibmplexmono-light-black-22px">{{
-                spanText117
-              }}</span>
-              <span class="ibmplexmono-normal-black-22px">{{
-                spanText118
-              }}</span>
-              <span class="ibmplexmono-light-black-22px">{{
-                spanText119
-              }}</span>
-              <span class="ibmplexmono-light-black-22px-2">{{
-                spanText120
-              }}</span>
-              <span class="span-10 ibmplexmono-light-black-22px-2">{{
-                spanText121
-              }}</span>
-              <span class="ibmplexmono-light-black-22px-2">{{
-                spanText122
-              }}</span>
-              <span class="span-10 ibmplexmono-light-black-22px-2">{{
-                spanText123
-              }}</span>
-              <span class="ibmplexmono-light-black-22px-2">{{
-                spanText124
-              }}</span>
-              <span class="ibmplexmono-normal-black-22px">{{
-                spanText125
-              }}</span>
-              <span class="span10 ibmplexmono-light-black-15px">{{
-                spanText126
-              }}</span>
+              <span class="ibmplexmono-light-black-22px">{{ spanText117 }}</span>
+              <span class="ibmplexmono-normal-black-22px">{{ spanText118 }}</span>
+              <span class="ibmplexmono-light-black-22px">{{ spanText119 }}</span>
+              <span class="ibmplexmono-light-black-22px-2">{{ spanText120 }}</span>
+              <span class="span-10 ibmplexmono-light-black-22px-2">{{ spanText121 }}</span>
+              <span class="ibmplexmono-light-black-22px-2">{{ spanText122 }}</span>
+              <span class="span-10 ibmplexmono-light-black-22px-2">{{ spanText123 }}</span>
+              <span class="ibmplexmono-light-black-22px-2">{{ spanText124 }}</span>
+              <span class="ibmplexmono-normal-black-22px">{{ spanText125 }}</span>
+              <span class="span10 ibmplexmono-light-black-15px">{{ spanText126 }}</span>
             </p>
             <p class="flex-row-item-3">
-              <span class="span-10 ibmplexmono-bold-black-22px">{{
-                spanText127
-              }}</span>
+              <span class="span-10 ibmplexmono-bold-black-22px">{{ spanText127 }}</span>
               <span class="ibmplexmono-bold-black-22px">{{ spanText128 }}</span>
-              <span class="ibmplexmono-light-black-22px">{{
-                spanText129
-              }}</span>
-              <span class="span-10 ibmplexmono-light-black-22px-2">{{
-                spanText130
-              }}</span>
-              <span class="ibmplexmono-light-black-22px-2">{{
-                spanText131
-              }}</span>
-              <span class="ibmplexmono-light-black-22px">{{
-                spanText132
-              }}</span>
-              <span class="span6-1 ibmplexmono-light-black-20px">{{
-                spanText133
-              }}</span>
+              <span class="ibmplexmono-light-black-22px">{{ spanText129 }}</span>
+              <span class="span-10 ibmplexmono-light-black-22px-2">{{ spanText130 }}</span>
+              <span class="ibmplexmono-light-black-22px-2">{{ spanText131 }}</span>
+              <span class="ibmplexmono-light-black-22px">{{ spanText132 }}</span>
+              <span class="span6-1 ibmplexmono-light-black-20px">{{ spanText133 }}</span>
             </p>
           </div>
           <div class="overlap-group6-1">
@@ -688,12 +589,8 @@ window.addEventListener('focus', e => {
                 learn-more-read-our-mirrorxyz-post-2
                 ibmplexmono-normal-white-22px
               ">
-              <span class="ibmplexmono-normal-black-22px">{{
-                spanText134
-              }}</span>
-              <span class="span1-1 ibmplexmono-bold-purple-30px">{{
-                spanText135
-              }}</span>
+              <span class="ibmplexmono-normal-black-22px">{{ spanText134 }}</span>
+              <span class="span1-1 ibmplexmono-bold-purple-30px">{{ spanText135 }}</span>
             </p>
           </div>
           <div class="overlap-group12-1">
@@ -709,18 +606,18 @@ window.addEventListener('focus', e => {
           <div class="overlap-group13-1 ibmplexmono-bold-black-25px">
             <p class="music-by-mistersoup_hi-1 valign-text-middle">
               <span>
-                <span class="ibmplexmono-bold-black-25px">{{spanText136}}</span>
-                <span class="ibmplexmono-normal-black-25px">{{spanText137}}</span>
-                <span class="ibmplexmono-bold-black-25px">{{spanText138}}</span>
-                <span class="span-10 ibmplexmono-bold-black-25px">{{spanText139}}</span>
+                <span class="ibmplexmono-bold-black-25px">{{ spanText136 }}</span>
+                <span class="ibmplexmono-normal-black-25px">{{ spanText137 }}</span>
+                <span class="ibmplexmono-bold-black-25px">{{ spanText138 }}</span>
+                <span class="span-10 ibmplexmono-bold-black-25px">{{ spanText139 }}</span>
               </span>
             </p>
             <p class="video-made-with-hologramxyz-1 valign-text-middle">
               <span>
-                <span class="ibmplexmono-bold-black-25px">{{spanText140}}</span>
-                <span class="ibmplexmono-normal-black-25px">{{spanText141}}</span>
-                <span class="ibmplexmono-bold-black-25px">{{spanText142}}</span>
-                <span class="span-10 ibmplexmono-bold-black-25px">{{spanText143}}</span>
+                <span class="ibmplexmono-bold-black-25px">{{ spanText140 }}</span>
+                <span class="ibmplexmono-normal-black-25px">{{ spanText141 }}</span>
+                <span class="ibmplexmono-bold-black-25px">{{ spanText142 }}</span>
+                <span class="span-10 ibmplexmono-bold-black-25px">{{ spanText143 }}</span>
               </span>
             </p>
           </div>
@@ -733,14 +630,10 @@ window.addEventListener('focus', e => {
                     ibmplexmono-normal-black-30px
                   ">
                   <span>
-                    <span class="ibmplexmono-normal-black-30px">{{spanText144
-  }}</span>
-                    <span class="span-10 ibmplexmono-bold-black-30px">{{spanText145
-  }}</span>
-                    <span class="ibmplexmono-bold-black-30px">{{spanText146
-  }}</span>
-                    <span class="ibmplexmono-normal-black-30px">{{spanText147
-  }}</span>
+                    <span class="ibmplexmono-normal-black-30px">{{ spanText144 }}</span>
+                    <span class="span-10 ibmplexmono-bold-black-30px">{{ spanText145 }}</span>
+                    <span class="ibmplexmono-bold-black-30px">{{ spanText146 }}</span>
+                    <span class="ibmplexmono-normal-black-30px">{{ spanText147 }}</span>
                   </span>
                 </div>
               </div>
@@ -755,12 +648,9 @@ window.addEventListener('focus', e => {
                   comicsansms-bold-black-15px
                 ">
                 <span>
-                  <span class="comicsansms-bold-black-15px">{{spanText148
-}}</span>
-                  <span class="comicsansms-regular-normal-black-15px">{{spanText149
-}}</span>
-                  <span class="span2-3 comicsansms-regular-normal-black-12px">{{spanText150
-}}</span>
+                  <span class="comicsansms-bold-black-15px">{{ spanText148 }}</span>
+                  <span class="comicsansms-regular-normal-black-15px">{{ spanText149 }}</span>
+                  <span class="span2-3 comicsansms-regular-normal-black-12px">{{ spanText150 }}</span>
                 </span>
               </p>
               <p class="x-physi-1 comicsansms-bold-purple-26-4px">
@@ -803,12 +693,9 @@ window.addEventListener('focus', e => {
                   comicsansms-bold-black-15px
                 ">
                 <span>
-                  <span class="comicsansms-bold-black-15px">{{spanText151
-}}</span>
-                  <span class="comicsansms-regular-normal-black-15px">{{spanText152
-}}</span>
-                  <span class="span2-3 comicsansms-regular-normal-black-12px">{{spanText153
-}}</span>
+                  <span class="comicsansms-bold-black-15px">{{ spanText151 }}</span>
+                  <span class="comicsansms-regular-normal-black-15px">{{ spanText152 }}</span>
+                  <span class="span2-3 comicsansms-regular-normal-black-12px">{{ spanText153 }}</span>
                 </span>
               </div>
               <p class="x-physi-1 comicsansms-bold-purple-26-4px">
@@ -842,12 +729,12 @@ window.addEventListener('focus', e => {
                 comicsansms-bold-purple-43-1px
               ">
               <span>
-                <span class="comicsansms-bold-purple-43-1px">{{spanText154}}</span>
-                <span class="comicsansms-regular-normal-purple-19-9px">{{spanText155}}</span>
-                <span class="comicsansms-bold-purple-19-9px">{{spanText156}}</span>
-                <span class="comicsansms-regular-normal-purple-19-9px">{{spanText157}}</span>
-                <span class="comicsansms-bold-purple-19-9px">{{spanText158}}</span>
-                <span class="comicsansms-regular-normal-purple-19-9px">{{spanText159}}</span>
+                <span class="comicsansms-bold-purple-43-1px">{{ spanText154 }}</span>
+                <span class="comicsansms-regular-normal-purple-19-9px">{{ spanText155 }}</span>
+                <span class="comicsansms-bold-purple-19-9px">{{ spanText156 }}</span>
+                <span class="comicsansms-regular-normal-purple-19-9px">{{ spanText157 }}</span>
+                <span class="comicsansms-bold-purple-19-9px">{{ spanText158 }}</span>
+                <span class="comicsansms-regular-normal-purple-19-9px">{{ spanText159 }}</span>
               </span>
             </p>
             <a href="https://twitter.com/ChristDreidel" target="_blank"><img class="icon-twitter-1"

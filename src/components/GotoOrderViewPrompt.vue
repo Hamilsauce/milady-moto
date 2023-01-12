@@ -9,24 +9,26 @@ import { useRoute } from "vue-router";
 
 const userStore = useUserStore();
 const currentRoute = useRoute()
-// currentRouteName.
+
 const connectButtonContent = computed(() => userStore.isConnected ? (userStore.user.wallet?.slice(0, 3) + '...' + userStore.user.wallet?.slice(-4, -1)).toLowerCase() : 'Connect');
+
 const userClosed = ref(false);
 
 const handleOrderButtonClick = async () => {
   router.push('vip');
-  // setUserClosed(true);
 };
+
 const setUserClosed = (state?: boolean) => {
   userClosed.value = state ? state : !userClosed.value
 };
 const userClosedComputed = computed(() => userClosed.value);
+
 const show = computed(() => !currentRoute.name?.toString().toLowerCase().includes('vip') && userStore.hasUnassignedTokens && userClosed.value !== true);
 
 </script>
 
 <template>
-  <header id="prompt-header" :class="{ connected: show }">
+  <header v-if="show" id="prompt-header" >
     <div id="prompt-header-close">
       <button @click="setUserClosed(true)" id="close-prompt">X</button>
     </div>
@@ -65,7 +67,10 @@ const show = computed(() => !currentRoute.name?.toString().toLowerCase().include
   gap: 32px;
   border: 1px solid black;
   overflow: hidden;
+
   height: 0px;
+  height: 400px;
+
   padding: 0 64px;
   background-color: var(--order-prompt-mint);
   color: black;

@@ -12,7 +12,7 @@ export const macBookPro16FrontEndCONNECTEDWithOpData = {
     spanText3: "Select your Sizes + Enter your Shipping Destinations",
     spanText4: " w/ the mi777 privacy-enabled shipping experience.",
     placeMyJerseyOrders: "Place my Jersey Orders!",
-    xXtgonqzggoeUnsplash1: "https://anima-uploads.s3.amazonaws.com/projects/63acc8efbfbaee2944b87bdf/releases/63acc958b185d05d2a6937f4/img/x-xtgonqzggoe-unsplash-1@1x.png",
+    xXtgonqzggoeUnsplash1: "src/assets/content-rows/0_0.jpg",
     spanText5: "mi777: the MiladyMoto Jersey",
     spanText6: "a Physi-Digi Love Letter to Milady",
     spanText7: "Physi-Digi",
@@ -350,7 +350,7 @@ export const group902Data = {
 };
 
 export const macBookPro16FrontEndData = {
-    xXtgonqzggoeUnsplash1: "https://anima-uploads.s3.amazonaws.com/projects/63acc8efbfbaee2944b87bdf/releases/63acc958b185d05d2a6937f4/img/x-xtgonqzggoe-unsplash-1@1x.png",
+    xXtgonqzggoeUnsplash1: "src/assets/content-rows/0_0.jpg",
     spanText1: "mi777: the MiladyMoto Jersey",
     spanText2: "a ",
     spanText3: "Physi-Digi",
